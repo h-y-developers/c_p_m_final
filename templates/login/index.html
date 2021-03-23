@@ -1,0 +1,160 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Free Tour and Travel Website Tempalte | Smarteyeapps.com</title>
+    <link rel="shortcut icon" href="{% static 'assets/images/fav.png' %}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'assets/images/fav.jpg' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/plugins/slider/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/plugins/slider/css/owl.theme.default.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style_login.css' %}" />
+</head>
+
+    <body class="form-login-body"> 
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 mx-auto login-desk">
+                       <div class="row">
+                           
+                            <div class="col-md-5 loginform">
+                                
+                                 <div class="log-txt row mt-4">
+                                    <h1>Campus Placement Management System</h1>
+                                 </div>
+                                 <!-- <div class="clg_selection row center">
+                                        <div><span>Select the college : </span></div><br>
+                                        <select class="clgs dropdown_menu dropdown_menu--animated" name="clgs" id="">
+                                            <div class="clg_drop">
+                                                <option value="" selected>Select College</option>
+                                                <option value="BVM">Birla Vishwakarma Mahavidyalaya</option>
+                                                <option value="ADIT">A D Patel</option>
+                                            </div>
+                                            
+                                        </select>
+                                    
+                                 </div> -->
+                            </div>
+                             <div class="col-md-7 detail-box pb-4">
+                               
+                                <div class="detailsh col-lg-7 col-md-10 col-sm-7 col-11 mx-auto">
+                                      <img class="logo mb-4" src="{% static 'assets/images/bvm_logo.png' %}" alt=""> 
+                                      <div class="row form-ro no-margin user_tabs">
+                                        <nav class="login_tabs" id="login_tabs">
+                                          
+                                            <ul class="login_users" id="login_users">
+                                                <li class="user_active users"><a href="/students/login" style="text-decoration: none;">Student</a></li>
+                                                <li class=" users"><a href="/faculty/login" style="text-decoration: none;">Faculty</a></li>
+                                                <li class=" users"><a href="/company/login" style="text-decoration: none;">Company</a></li>
+                                                <!-- <li class="users" id="Faculty"><input type="hidden" name="login_users[]" value="Faculty">Faculty</li>
+                                                <li class="users" id="Company"><input type="hidden" name="login_users[]" value="Company">Company</li> -->
+                                            </ul>
+                                          <!-- </form> -->
+                                        </nav>
+                                      </div>
+                                      
+                                        {% for message in messages %}
+                                         <p id="messages" style="color: red;">{{message}}</p>
+                                        {% endfor %}
+                                      <div class="form_contain mt-2">
+                                        <form class="  student_form form_active" method="POST" style="display: block;">
+                                          {% csrf_token %}
+                                            <div class="row form-ro no-margin">
+                                              <input type="text" placeholder="Student Username" class="form-control form-control-sm">
+                                          </div>
+                                          
+                                           <div class="row form-ro no-margin">
+                                              <input type="password" placeholder="Password" class="form-control form-control-sm">
+                                          </div>
+                                          <hr>
+                                        <div class="row form-ro fgbh mt-4">
+                                            <div class="col-6">
+                                                <a href="">Forget Password</a>
+                                            </div>
+                                            <div class="col-6">
+                                                <button class="btn btn-sm btn-primary">Sign In</button>
+                                            </div>
+                                          </div>
+                                          <!-- <div class="row form-ro hlio fgbh">
+                                            <div class="col-md-12">
+                                                <p>Dont have Accounta <a href="">Sign Up now</a> </p>
+                                            </div>
+                                            
+                                        </div>   -->
+                                    </form>
+                                        <form class="  faculty_form form_inactive" method="POST" style="display: none;">
+                                          {% csrf_token %}
+                                            <div class="row form-ro no-margin">
+                                              <input type="text" placeholder="Faculty Username" class="form-control form-control-sm">
+                                          </div>
+                                          
+                                           <div class="row form-ro no-margin">
+                                              <input type="password" placeholder="Password" class="form-control form-control-sm">
+                                          </div>
+                                          <hr>
+                                        <div class="row form-ro fgbh mt-4">
+                                            <div class="col-6">
+                                                <a href="">Forget Password</a>
+                                            </div>
+                                            <div class="col-6">
+                                                <button class="btn btn-sm btn-primary">Sign In</button>
+                                            </div>
+                                          </div>
+                                          <!-- <div class="row form-ro hlio fgbh">
+                                            <div class="col-md-12">
+                                                <p>Dont have Accounta <a href="">Sign Up now</a> </p>
+                                            </div>
+                                            
+                                        </div>   -->
+                                    </form>
+                                        <form class="  company_form form_inactive" method="POST" style="display: none;">
+                                          {% csrf_token %}
+                                            <div class="row form-ro no-margin">
+                                              <input type="text" placeholder="Username" class="form-control form-control-sm">
+                                          </div>
+                                          
+                                           <div class="row form-ro no-margin">
+                                              <input type="password" placeholder="Password" class="form-control form-control-sm">
+                                          </div>
+                                          <hr>
+                                        <div class="row form-ro fgbh mt-4">
+                                            <div class="col-6">
+                                                <a href="">Forget Password</a>
+                                            </div>
+                                            <div class="col-6">
+                                                <button class="btn btn-sm btn-primary">Sign In</button>
+                                            </div>
+                                          </div>
+                                          <!-- <div class="row form-ro hlio fgbh">
+                                            <div class="col-md-12">
+                                                <p>Dont have Accounta <a href="">Sign Up now</a> </p>
+                                            </div>
+                                            
+                                        </div>   -->
+                                    </form>
+                                      </div>
+                                      
+                                    
+                                </div>
+                            </div>
+                       </div>
+                      
+                    </div>
+                </div>
+            </div>
+    </body>
+
+    <script src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <!-- <script src="{% static 'assets/plugins/scroll-fixed/jquery-scrolltofixed-min.js' %}"></script>
+    <script src="{% static 'assets/plugins/slider/js/owl.carousel.min.js' %}"></script> -->
+    <!-- <script src="{% static 'assets/js/script.js' %}"></script> -->
+</html>

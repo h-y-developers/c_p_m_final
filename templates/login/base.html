@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Free Tour and Travel Website Tempalte | Smarteyeapps.com</title>
+    <link rel="shortcut icon" href="{% static 'assets/images/fav.png' %}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'assets/images/fav.jpg' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'assets/plugins/slider/css/owl.carousel.min.css' %}"> -->
+    <!-- <link rel="stylesheet" href="{% static 'assets/plugins/slider/css/owl.theme.default.css' %}"> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style_login.css' %}" />
+</head>
+
+    <body class="form-login-body"> 
+        <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 mx-auto login-desk">
+                       <div class="row">
+                           
+                            <div class="col-md-5 loginform ">
+                                
+                                 <div class="log-txt text-center row mt-4 ">
+                                     <center>
+                                        <h1 class="text-center" style="margin-top: 10vh;">Birla Vishwakarma Mahavidyalaya</h1>
+                                     
+                                     </center>
+                                    </div>
+
+
+                                 <!-- <div class="clg_selection row center">
+                                        <div><span>Select the college : </span></div><br>
+                                        <select class="clgs dropdown_menu dropdown_menu--animated" name="clgs" id="">
+                                            <div class="clg_drop">
+                                                <option value="" selected>Select College</option>
+                                                <option value="BVM">Birla Vishwakarma Mahavidyalaya</option>
+                                                <option value="ADIT">A D Patel</option>
+                                            </div>
+                                            
+                                        </select>
+                                    
+                                 </div> -->
+                                 </div>
+                                {% block content %}
+                                {% endblock content %}
+                          
+                            </div>
+                             
+                       </div>
+                      
+                    </div>
+                </div>
+            </div>         
+    </body>
+
+    <script src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <!-- <script src="{% static 'assets/plugins/scroll-fixed/jquery-scrolltofixed-min.js' %}"></script>
+    <script src="{% static 'assets/plugins/slider/js/owl.carousel.min.js' %}"></script> -->
+    <!-- <script src="{% static 'assets/js/script.js' %}"></script> -->
+</html>

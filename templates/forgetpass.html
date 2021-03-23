@@ -1,0 +1,48 @@
+{% extends 'c_admin/base.html' %}
+{% block content %}
+    <div class="container-scroller loginn">
+      <div class="container-fluid page-body-wrapper full-page-wrapper ">
+        <div class="row w-100 m-0">
+          <div class="content-wrapper full-page-wrapper d-flex align-items-center auth">
+            <div class="card col-lg-4 mx-auto">
+              <div class="card-body px-5 py-5">
+                <h3 class="card-title text-left text-muted">Forget Password</h3>
+                <form method="POST">
+                {% csrf_token %}
+                
+                  <div class="form-group" style="position: relative; margin-top: 2.5rem; margin-bottom: 2rem;">
+                    <label>Username</label>
+                    <input type="text" name="username" class="form-control p_input">
+                  </div>
+                  <!-- <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" class="form-control p_input">
+                  </div> -->
+                  <!-- <div class="form-group d-flex align-items-center justify-content-between">
+                    {% comment %} <div class="form-check">
+                      <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input"> Remember me </label>
+                    </div> {% endcomment %}
+                    <a href="#" class="forgot-pass">Forgot password</a>
+                  </div> -->
+                  {% for message in messages %}
+                <div class="form-group mt-4 mb-4 {{ message.tags }} alert-dismissible fade show" role="alert">
+                  {{ message }}
+                  
+                </div>
+                {% endfor %}
+                  <div class="text-center form-group ">
+                    <button type="submit" class="btn btn-primary btn-block enter-btn"><i class="mdi mdi-arrow-right" style="font-size: 1.5rem;"></i></button>
+                  </div>
+                    
+                  </form>
+              </div>
+            </div>
+          </div>
+          <!-- content-wrapper ends -->
+        </div>
+        <!-- row ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+{% endblock content %}
