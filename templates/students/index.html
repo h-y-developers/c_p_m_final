@@ -62,27 +62,35 @@
                         </div>
                         <div class="col-md-6">
                           <h4 class="card-title mb-4">Contact Info</h4>
-                          <p class="mb-2 text-muted">{{ student.email }} </p>
-                          <p class="mb-2 text-muted">{{ student.mobile }} </p>
+                          <a href="mailto:{{ student.email }}" target='_blank' class="mb-2 text-muted">{{ student.email }} </a>
+                   
+                          <p class="mb-2 mt-3 text-muted">{{ student.mobile }} </p>
                         </div>
                         
                       </div>
                       <div class="row">
-                        <div class="col-md-6">
-                          
-                        
-                        </div>
-                        <div class="col-md-6">
-                          <address class="">
-                            
-                            
-                            
+                        <div class="col-md-6 mt-4 mb-4">
+      
+                          <h4 class="card-title mb-4">Social Links</h4>
+                          <address class="text-muted">
+                            <a href="{{ student.website }}" target="_blank" class="btn btn-inverse-success  btn-icon-text mr-3"
+                              style="border-radius: 50%; height:50px; width:50px;font-size: 1.3rem; display: inline-block; padding-left: 13px; line-height: 35px;">
+                              <i class="text-center mdi mdi-web btn-icon-prepend"></i> </a>
+                            <a href="{{ student.fb_profile }}" target="_blank" class="btn btn-inverse-primary  btn-icon-text mr-3"
+                              style="border-radius: 50%; height:50px; width:50px;font-size: 1.3rem; display: inline-block; padding-left: 13px; line-height: 35px;">
+                              <i class="text-center mdi mdi-facebook btn-icon-prepend"></i> </a>
+                            <!-- <button type="button" class="btn btn-social-icon btn-inverse-facebook btn-rounded text-center"><i class="mdi mdi-facebook"></i></button> -->
+                            <a href="{{ student.linkedin_profile }}" target="_blank" class="btn btn-inverse-info  btn-icon-text mr-3"
+                              style="border-radius: 50%; height:50px; width:50px;font-size: 1.3rem; display: inline-block; padding-left: 13px; line-height: 35px;">
+                              <i class="text-center mdi mdi-linkedin btn-icon-prepend"></i> </a>
+                            <a href="{{ student.insta_profile }}" target="_blank" class="btn btn-inverse-danger  btn-icon-text mr-3"
+                              style="border-radius: 50%; height:50px; width:50px;font-size: 1.3rem; display: inline-block; padding-left: 13px; line-height: 35px;">
+                              <i class="text-center mdi mdi-instagram btn-icon-prepend"></i> </a>
                           </address>
-                        
                         </div>
-                        
+      
+      
                       </div>
-                      
                         <!-- <h4 class="card-title text-muted mb-2" style="margin-top: 4rem;">Email ID</h4>
                         <div class="col-md-6">
                           <address class="">

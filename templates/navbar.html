@@ -1,8 +1,8 @@
 {% load static %}
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-    <a class="sidebar-brand brand-logo" href="index.html"><img src="{% static 'assets/images/logo-mini.svg' %}"  style="height:50px;width:50px; position: relative; top:10px;" alt="logo" /></a>
-          <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="{% static 'assets/images/logo-mini.svg' %}"   style="height:50px;width:50px; position: relative; top:10px;" alt="logo" /></a>
+    <a class="sidebar-brand brand-logo" href="index.html"><img src="{% static 'assets/images/bvm_logo.png' %}"  style="height:50px;width:50px; position: relative; " alt="logo" /></a>
+          <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="{% static 'assets/images/bvm_logo.png' %}"   style="height:50px;width:50px; position: relative;" alt="logo" /></a>
   </div>
 <ul class="nav" style="position: fixed;">
     <li class="nav-item profile">
@@ -62,7 +62,7 @@
     <li class="nav-item menu-items">
       <a class="nav-link" href="/students/index">
         <span class="menu-icon">
-          <i class="mdi mdi-account-circle"></i>
+          <i class="mdi mdi-speedometer"></i>
         </span>
         <span class="menu-title">Dashboard</span>
       </a>
@@ -115,16 +115,15 @@
         <span class="menu-title">Materials</span>
       </a>
     </li>  -->
-
     <li class="nav-item menu-items">
-      <a class="nav-link" href="/students/profile/{{ request.user.slug }}">
+      <a class="nav-link" href="/students/skills">
         <span class="menu-icon">
-          <i class="mdi mdi-account"></i>
+          <i class="mdi mdi-tie"></i>
         </span>
-        <span class="menu-title">Profile</span>
+        <span class="menu-title">Skills</span>
       </a>
     </li>
-
+    
   <li class="nav-item menu-items">
       <a class="nav-link" href="/students/events">
         <span class="menu-icon">
@@ -142,5 +141,14 @@
         <span class="menu-title">Projects</span>
       </a>
     </li>
+    <li class="nav-item menu-items">
+      <a class="nav-link" href="/students/profile/{{ request.user.slug }}">
+        <span class="menu-icon">
+          <i class="mdi mdi-account"></i>
+        </span>
+        <span class="menu-title">Profile</span>
+      </a>
+    </li>
+
   </ul>
 </nav>

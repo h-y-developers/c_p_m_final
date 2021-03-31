@@ -37,11 +37,11 @@ from django.conf.urls import url
 
 # from .views.c_admin import (AdminForgetPassView,AdminLogoutView,AdminLoginView,AdminStudentView, AdminFacultyView, AdminAddAdminView,AdminCompanyView)
 
-from .views.student import (StudentProjectsee,StudentProfileUpdateView,StudentCertificateView,StudentForgetPassView,StudentLogoutView,StudentLoginView,StudentProfileView, StudentDashboardView,StudentAchievementView,StudentExamView,StudentAddProjectView,StudentEventView,Studentproject,StudentProfileSettingView)
+from .views.student import (skills,StudentProjectsee,StudentProfileUpdateView,StudentCertificateView,StudentForgetPassView,StudentLogoutView,StudentLoginView,StudentProfileView, StudentDashboardView,StudentAchievementView,StudentExamView,StudentAddProjectView,StudentEventView,Studentproject,StudentProfileSettingView)
 
 from .views.c_admin import (AdminForgetPassView,AdminLogoutView,AdminLoginView,AdminStudentView, AdminFacultyView, AdminAddAdminView,AdminCompanyView,AdminStudentMarksView,AdminProfileSettingView)
 
-from .views.company import (CompanyForgetPassView,CompanyLoginView,CompanyLogoutView,CompanyDashboardView,CompanyFindCandidate,CompanyRequirements,CompanyProfileSettingView)
+from .views.company import (CompanyProfileView,CompanyProfileUpdateView,CompanyProjectView,CompanyForgetPassView,CompanyLoginView,CompanyLogoutView,CompanyDashboardView,CompanyFindCandidate,CompanyRequirements,CompanyProfileSettingView,CompanyFindCandidateFilter)
 
 from .views.faculty import (FacultyForgetPassView,FacultyLogoutView,FacultyLoginView,FacultyDashboardView,FacultyProfileView,FacultyEventView,FacultyAddEventView,FacultyProfileSettingView,FacultyEditEventView,FacultyDeleteEventView)
 
@@ -53,7 +53,7 @@ app_name = 'campus'
 
 urlpatterns = [
     # path('/',shome,name="initial_login"),
-    path('login/',home,name="login"),
+    path('',home,name="login"),
     # url(r'login/',home,name="login"),
     # path('',college.home,name="home"),
     # path('students/', include(([
@@ -113,6 +113,7 @@ urlpatterns = [
     path('students/index', StudentDashboardView, name='student_dashboard'),
     path('students/exams', StudentExamView, name='student_exams'),
     path('students/add_achievement', StudentCertificateView, name='student_cerificate'),
+    path('students/skills',skills,name="Skills_achievement"),
     # path('students/profile_submit', StudentProfileView, name="student_profile_submit"),
     # path('students/profile', StudentProfileadd, name="student_profile"),
     # path('students/', StudentDashboardView, name='student_dashboard'),
@@ -168,8 +169,12 @@ urlpatterns = [
     path('company/index', CompanyDashboardView, name='company_dashboard'),
     path('company/logout', CompanyLogoutView, name='company_logout'),
     path('company/Find_candidate', CompanyFindCandidate, name='company_findcandidate'),
+    path('company/Find_candidate/filter', CompanyFindCandidateFilter, name='company_findcandidate_filter'),
     path('company/requirements', CompanyRequirements, name='company_requirements'),
     path('company/forgetPassword', CompanyForgetPassView, name='company_forget'),
+    path('company/project_see', CompanyProjectView, name='company_projects'),
+    path('company/profile/<str:slug>', CompanyProfileView, name='company_profile'),
+    path('company/profile/<str:slug>/update', CompanyProfileUpdateView, name='company_edit_profile'),
     path('company/edit_profile/<str:slug>', CompanyProfileSettingView, name='company_profile_setting'),
     
     path('forgetPassword',ForgetPasswordView,name="forget_password"),

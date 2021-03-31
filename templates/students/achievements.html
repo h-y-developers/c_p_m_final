@@ -12,7 +12,7 @@
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
-         <form  action="/students/certi" enctype="multipart/form-data">   
+         <form method="GET" action="" enctype="multipart/form-data">   
          {% comment %} {% csrf_token %} {% endcomment %}
             <div class="row">
 <!--             
@@ -27,12 +27,12 @@
                     <div class="d-flex flex-row justify-content-between mb-3">
                       <h4 class="card-title text-muted mt-2 mb-1">Achievements</h4>
                       <a href="/students/add_achievement" style="border-radius:100% ; height: 4rem;  width: 4rem; position: fixed; bottom: 30px; right: 30px; font-size: 2rem; display: inline-block; padding-left: 15px; line-height: 48px; z-index: 99;" class="btn btn-primary"><i class="mdi mdi-plus" style=""></i></a>
-                      <select class="text-muted typeahead achieve_type col-4 mb-1">
+                      <select name="achieve_type" class="achieve_type text-muted typeahead achieve_type col-4 mb-1">
                           <option class="text-muted mb-1" value="0">All</option>
-                          <option class="text-muted mb-1" value="1">Developing</option>
-                          <option class="text-muted mb-1" value="2">Designing</option>
-                          <option class="text-muted mb-1" value="3">Workshops</option>
-                          <option class="text-muted mb-1" value="4">Non Cultural Events</option>
+                          <option class="text-muted mb-1" value="Developing">Developing</option>
+                          <option class="text-muted mb-1" value="Designing">Designing</option>
+                          <option class="text-muted mb-1" value="Workshops">Workshops</option>
+                          <option class="text-muted mb-1" value="Non_Cultural_Events">Non Cultural Events</option>
                       </select>
                     </div>
                   
@@ -40,7 +40,7 @@
 
              {% for achievement in achievements %}
                 
-                <div class="col-md-3 col-xl-4 grid-margin stretch-card">
+                <div class="{{ achievement.field_type }} col-md-3 col-xl-4 grid-margin stretch-card" style="display: block;">
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title certi_type">{{ achievement.field_type }}</h4>
@@ -98,10 +98,38 @@
       <script>
         $(document).ready(function(){
           $('.achieve_type').on('change',function(){
-            var a = $(this).html()
-            if($('.certi_type').html()==a){
-              
+            var a = $(this).val()
+            if(a == 'Developing'){
+              $('.Developing').css({"display":"block"});
+              $('.Designing').css({"display":"none"});
+              $('.Non_Cultural_Events').css({"display":"none"});
+              $('.Workshops').css({"display":"none"});
             }
+            if(a == 'Designing'){
+              $('.Developing').css({"display":"none"});
+              $('.Designing').css({"display":"block"});
+              $('.Non_Cultural_Events').css({"display":"none"});
+              $('.Workshops').css({"display":"none"});
+            }
+            if(a == 'Non_Cultural_Events'){
+              $('.Developing').css({"display":"none"});
+              $('.Designing').css({"display":"none"});
+              $('.Non_Cultural_Events').css({"display":"block"});
+              $('.Workshops').css({"display":"none"});
+            }
+            if(a == 'Workshops'){
+              $('.Developing').css({"display":"none"});
+              $('.Designing').css({"display":"none"});
+              $('.Non_Cultural_Events').css({"display":"none"});
+              $('.Workshops').css({"display":"block"});
+            }
+            if(a == '0'){
+              $('.Developing').css({"display":"block"});
+              $('.Designing').css({"display":"block"});
+              $('.Non_Cultural_Events').css({"display":"block"});
+              $('.Workshops').css({"display":"block"});
+            }
+            
           })
         })
       </script>

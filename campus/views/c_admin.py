@@ -158,7 +158,7 @@ def AdminStudentView(request):
             else:
                 try:
                     imported_data = dataset.load(new_persons.read(),format='xlsx')
-                    print(imported_data)
+                    
                     for data in imported_data:
                         # print(data[0])
                         user = User(
@@ -170,6 +170,9 @@ def AdminStudentView(request):
                             dept = data[5],
                             is_student = True
                            )
+                        student = Marks(
+                            id_no = data[1]
+                        )
                         # student = Student(
                                 
                         #         Id_number = data[1]
@@ -177,7 +180,7 @@ def AdminStudentView(request):
                         #     )
 
                         user.set_password('Bvm@12345')
-                        # student.save()    
+                        student.save()    
                         user.save()
 
                     messages.success(request,"File Uploaded")
@@ -219,27 +222,41 @@ def AdminStudentMarksView(request):
             else:
                 try:
                     imported_data = dataset.load(new_marks.read(),format='xlsx')
-                    print(imported_data)
+                    
                     for data in imported_data:
                         # print(data[0])
-                        user = Marks(
-                            data[0],
-                            username = data[1],
-                            sem_1 = data[2],
-                            sem_2 = data[3],
-                            sem_3 = data[4],
-                            sem_4 = data[5],
-                            sem_5 = data[6],
-                            sem_6 = data[7],
-                            sem_7 = data[8],
-                            sem_8 = data[9],
-                            first_year = data[10],
-                            second_year = data[11],
-                            third_year = data[12],
-                            fourth_year = data[13],
-                            # is_student = True
-                           )
-                        
+                        user = Marks.objects.get(id_no = data[1])
+                        # user = Marks(
+                        #     data[0],
+                        #     id_no = data[1],
+                        #     sem_1 = data[2],
+                        #     sem_2 = data[3],
+                        #     sem_3 = data[4],
+                        #     sem_4 = data[5],
+                        #     sem_5 = data[6],
+                        #     sem_6 = data[7],
+                        #     sem_7 = data[8],
+                        #     sem_8 = data[9],
+                        #     first_year = data[10],
+                        #     second_year = data[11],
+                        #     third_year = data[12],
+                        #     fourth_year = data[13],
+                        #     # is_student = True
+                        #    )
+
+                        user.id_no = data[1]
+                        user.sem_1 = data[2]
+                        user.sem_2 = data[3]
+                        user.sem_3 = data[4]
+                        user.sem_4 = data[5]
+                        user.sem_5 = data[6]
+                        user.sem_6 = data[7]
+                        user.sem_7 = data[8]
+                        user.sem_8 = data[9]
+                        user.first_year = data[10]
+                        user.second_year = data[11]
+                        user.third_year = data[12]
+                        user.fourth_year = data[13]
                         user.save()
 
                     messages.success(request,"File Uploaded")

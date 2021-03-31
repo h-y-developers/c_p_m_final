@@ -25,30 +25,36 @@ class User(AbstractUser):
     is_company = models.BooleanField(default=False)
     username = models.CharField(max_length=100,unique=True)
     email = models.CharField(max_length=100)
-    is_pass_change = models.BooleanField(default=False)
+    
     dept = models.CharField(max_length=100,default="")
     profile_pic = models.FileField(null=True,upload_to='profile_pictures/',default="profile_pictures/H&Y.png")
     slug = models.SlugField(unique=True, default=uuid.uuid1)
     college_name = models.CharField(max_length =100, default="BVM")
 
+
+    def profile_filename(self):
+        return self.profile_pic.name
+
+    
+
+
 class Marks(models.Model):
     id_no = models.CharField(unique=True,max_length=20,null=True)
-    username = models.CharField(unique=True,max_length=100)
-    sem_1 = models.CharField(blank=True,max_length=20)
-    sem_2 = models.CharField(blank=True,max_length=20)
-    sem_3 = models.CharField(blank=True,max_length=20)
-    sem_4 = models.CharField(blank=True,max_length=20)
-    sem_5 = models.CharField(blank=True,max_length=20)
-    sem_6 = models.CharField(blank=True,max_length=20)
-    sem_7 = models.CharField(blank=True,max_length=20)
-    sem_8 = models.CharField(blank=True,max_length=20)
-    first_year = models.CharField(blank=True,max_length=20)
-    second_year = models.CharField(blank=True,max_length=20)
-    third_year = models.CharField(blank=True,max_length=20)
-    fourth_year = models.CharField(blank=True,max_length=20)
+    sem_1 = models.CharField(blank=True,max_length=20,default="0.0")
+    sem_2 = models.CharField(blank=True,max_length=20,default="0.0")
+    sem_3 = models.CharField(blank=True,max_length=20,default="0.0")
+    sem_4 = models.CharField(blank=True,max_length=20,default="0.0")
+    sem_5 = models.CharField(blank=True,max_length=20,default="0.0")
+    sem_6 = models.CharField(blank=True,max_length=20,default="0.0")
+    sem_7 = models.CharField(blank=True,max_length=20,default="0.0")
+    sem_8 = models.CharField(blank=True,max_length=20,default="0.0")
+    first_year = models.CharField(blank=True,max_length=20,default="0.0")
+    second_year = models.CharField(blank=True,max_length=20,default="0.0")
+    third_year = models.CharField(blank=True,max_length=20,default="0.0")
+    fourth_year = models.CharField(blank=True,max_length=20,default="0.0")
 
     def __str__(self):
-        return self.username
+        return self.id_no
 
     
 
@@ -99,6 +105,7 @@ class Student(models.Model):
         ("j","Java")
     )
     Id_number = models.CharField(max_length=100,primary_key=True,default="")
+    year = models.CharField(max_length=5,default="1")
     slug = models.SlugField(default="")
     fname = models.CharField(max_length=100,blank=True,default="")
     lname = models.CharField(max_length=100,blank=True,default="")
@@ -109,21 +116,25 @@ class Student(models.Model):
     # role = models.CharField(max_length = 1,choices=boolrchoice,null=True)
     dept = models.CharField(max_length = 10,choices=booldchoice,null=True)
     enrollment = models.CharField(max_length=20,null=True)
-    id_no = models.CharField(max_length=10,null=True)
+    
     permanent_address = models.CharField(max_length=256,null=True)
     state = models.CharField(max_length=100,null=True)
     resident_address = models.CharField(max_length=100,null=True)
     pincode = models.CharField(max_length=6,null=True)
     city= models.CharField(max_length = 100,null=True)
     country = models.CharField(max_length = 100,null=True)
-    ssc = models.CharField(max_length = 100,null=True)
-    ssc_path = models.CharField(max_length=255,null=True) 
-    ssc_result = models.FileField(blank=True,default="",upload_to='ssc_results/')
-    hsc_path = models.CharField(max_length=255,null=True)
-    hsc = models.CharField(max_length = 100,null=True)
-    hsc_result = models.FileField(blank=True,default="",upload_to='hsc_results/')
-
-    interest = MultiSelectField(choices=boolichoice,null=True)
+    ssc = models.CharField(max_length = 100,blank=True,default="")
+    # ssc_result = models.FileField(blank=True,default="",upload_to='ssc_results/')
+    ssc_result = models.CharField(max_length=20,blank=True,default="")
+    hsc_result = models.CharField(max_length=20,blank=True,default="")
+    hsc = models.CharField(max_length = 100,blank=True,default="")
+    profile_pic = models.TextField(null=True,default="H&Y.png")
+    # hsc_result = models.FileField(blank=True,default="",upload_to='hsc_results/')
+    fb_profile = models.CharField(max_length=255,blank=True,default="")
+    insta_profile = models.CharField(max_length=255,blank=True,default="")
+    linkedin_profile = models.CharField(max_length=255,blank=True,default="")
+    website = models.URLField(max_length=100,blank=True,default="")
+    interest = MultiSelectField(choices=boolichoice,blank=True,default="")
     
 
     def sscfilename(self):
@@ -159,8 +170,31 @@ class Achievement(models.Model):
     #     db_table = "achievements"
 
 
+class Skills(models.Model):
+    boolschoice = (
+        ("wd","Web Development"),("ad","App Development"),("cd","Cloud Computing"),
+        ("excel","Excel"),("wp","Wordpress"),("react","React"),("dj","Django"),
+        ("bc","Block Chain"),("dm","Data Mining"),("py","Python"),("c","C/C++"),
+        ("j","Java")
+        )
+    username = models.CharField(unique=True,max_length=100,null=True)
+    skills = models.CharField(max_length=400,blank=True)
+    # interest = models.CharField(max_length=400,blank=True)
+
+    # skills = MultiSelectField(choices=boolschoice,max_length = 100,default="")
+    # interest = MultiSelectField(choices=boolschoice,max_length=100,default="")
+
+    def __str__(self):
+        return self.username
 
 
+class Skill_list(models.Model):
+    
+    skill_name = models.CharField(unique=True,max_length=255,default="")
+    icon = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.skill_name
 
 
 
@@ -179,13 +213,25 @@ class College(models.Model):
 
 
 
-class Comapnies(models.Model):
-    company_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-    company_name = models.CharField(max_length = 100)
-    field_name = models.CharField(max_length=100)
-    email_id = models.CharField(max_length = 100)
-    coming_date = models.DateField()
-    job_description = models.CharField(max_length=255)
+class Company(models.Model):
+    company_id = models.CharField(max_length=255, editable=False)
+    company_username = models.CharField(max_length=100,default="")
+    company_name = models.CharField(max_length = 100,default="")
+    field_name = models.CharField(max_length=100,default="")
+    mobile = models.CharField(max_length=10,default="")
+    email = models.CharField(max_length = 100)
+    description = models.TextField(default="")
+    website = models.URLField(max_length=100,blank=True,default="")
+    address = models.TextField(default="")
+    city = models.CharField(max_length=100,default="")
+    state = models.CharField(max_length=100,default="")
+    country = models.CharField(max_length=100,default="")
+    year_found = models.CharField(max_length=6, default="")
+    no_of_employee = models.CharField(max_length=200,default = "")
+    fb_profile = models.CharField(max_length=255,default="")
+    insta_profile = models.CharField(max_length=255,default="")
+    linkedin_profile = models.CharField(max_length=255,default="")
+    # type_of_service
     # required_student = models.IntergerField()
     # placed_student = models.IntergerField()
     college_name = models.CharField(max_length =100, default="BVM")

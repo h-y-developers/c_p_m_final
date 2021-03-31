@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'import_export',
     'django_cleanup',
     'campus',
+    'django_filters'
     # 'rest_framework'
 ]
 
@@ -145,8 +146,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'hydevelopersdesigners@gmail.com'
-EMAIL_HOST_PASSWORD = 'Harsh@251198'
+EMAIL_HOST_USER = '18it426@bvmengineering.ac.in'
+EMAIL_HOST_PASSWORD = 'H@rsh@8316'
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'text-secondary',

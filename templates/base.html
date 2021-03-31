@@ -18,6 +18,11 @@
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
+
+
+    {% block extracss %}
+
+    {% endblock extracss  %}
     
     <link rel="stylesheet" href="{% static 'assets/vendors/mdi/css/materialdesignicons.min.css' %}">
     <link rel="stylesheet" href=" {% static 'assets/vendors/css/vendor.bundle.base.css' %} ">
@@ -26,7 +31,7 @@
     <link rel="stylesheet" href=" {% static 'assets/vendors/select2/select2.min.css' %} ">
     <link rel="stylesheet" href="{% static 'assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/style_star.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'assets/css/style_star.css' %}"> -->
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{% static 'assets/images/favicon.png' %}" />
     <style type="text/css">
@@ -36,6 +41,7 @@
         left: 0;
       }
     </style>
+
   </head>
 
   <body>
