@@ -7,12 +7,12 @@ from django.shortcuts import get_object_or_404, redirect, render, HttpResponseRe
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, ListView, UpdateView,View
-from ..models import  Student, Events,Achievement,Exams,Project, User,Requirements,Company
+from ..models import  Student, Events,Achievement,Exams,Project, User,Requirements,Company,Marks, Skills, Skill_list
 from ..forms import DocumentForm
 
 
 def CompanyLoginView(request):
-    if request.user.is_authenticated and user.is_company:
+    if request.user.is_authenticated and request.user.is_company:
         userr = User.objects.get(username = request.user.username)
         url = '/company/profile/'+userr.slug
         return redirect(url)
@@ -122,9 +122,18 @@ def CompanyFindCandidateFilter(request):
 def CompanyFindCandidate(request):
     if request.user.is_authenticated and request.user.is_company:
         userr = Student.objects.all()
-        
+        skill =  Skill_list.objects.all()
+        try:
+            own_skill = Skills.objects.all()
+            # skill_li = own_skill.skills.split(',')
+        except:
+            own_skill = None
+            # skill_li = []
+
         context = {
-            'students':userr
+            'students':userr,
+            'skills' : skill,
+            'own_skill' : own_skill
         }
         return render(request,"company/find_candidate.html",context)
     else:
@@ -134,6 +143,7 @@ def CompanyFindCandidate(request):
 def CompanyProjectView(request):
     if request.user.is_authenticated and request.user.is_company:
         project = Project.objects.all()
+        
         context = {
             'projects':project
         }
@@ -160,6 +170,38 @@ def CompanyRequirements(request):
     else:
         return redirect('/company/login')
 
+
+
+def CompanyStudentProfileView(request,slug):
+    if request.user.is_authenticated and request.user.is_company:
+        skill =  Skill_list.objects.all()
+        try:
+            stu = Student.objects.get(Id_number = slug)
+            own_skill = Skills.objects.get(username = slug)
+            skill_li = own_skill.skills.split(',')
+            achievements = Achievement.objects.filter(student_name=slug)
+            project = Project.objects.filter(student_name = slug)
+            mark = Marks.objects.get(id_no = slug)
+        except:
+            stu = None
+            own_skill = None
+            skill_li = []
+            achievements = None
+            project = None
+            mark = None
+        
+        # if stu is not None:
+        context={
+            'student':stu,
+            'achievements' : achievements,
+            'projects': project,
+            'marks' : mark,
+            'skills':skill,
+            'own_skill':skill_li
+        }
+        return render(request,'company/stu_profile.html',context)
+    else:
+        return redirect('/company/login')
 
 def CompanyProfileUpdateView(request,slug):
     if request.method == "POST":

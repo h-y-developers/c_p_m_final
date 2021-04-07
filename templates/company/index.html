@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
-
+{% block title %}
+  <title>{{ request.user.username }} | Dashboard</title>
+{% endblock title %}
 {% block content %}
 
 

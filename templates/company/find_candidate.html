@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% block title %}
+  <title>{{ request.user.username }} | Students</title>
+{% endblock title %}
 {% block content %}
 
 {% load static %}
@@ -183,34 +186,32 @@
                         <li class="filter_li">
                           <div class="form-check form-check-flat form-check-primary">
                             <label class="form-check-label">
-                              <input type="checkbox" name="skill[]" value="web" class="form-check-input"> Web Development
-                            </label>
+                              <input type="checkbox" name="skill" value="web" class="form-check-input">Web Development                            </label>
                           </div>
                         </li>
                         <li class="filter_li">
                           <div class="form-check form-check-flat form-check-primary">
                             <label class="form-check-label">
-                              <input type="checkbox" name="skill[]" value="app" class="form-check-input"> App Development
-                            </label>
+                              <input type="checkbox" name="skill" value="app" class="form-check-input">App Development                            </label>
                           </div>
                         </li>
                         <li>
                           <div class="form-check form-check-flat form-check-primary">
                             <label class="form-check-label">
-                              <input type="checkbox" name="skill[]" value="cloud" class="form-check-input"> Cloud
-                              Computing </label>
+                              <input type="checkbox" name="skill" value="cloud" class="form-check-input">Cloud
+                              Computing</label>
                           </div>
                         </li>
                         <li>
                           <div class="form-check form-check-flat form-check-primary">
                             <label class="form-check-label">
-                              <input type="checkbox" name="skill[]" value="react" class="form-check-input"> React </label>
+                              <input type="checkbox" name="skill" value="react" class="form-check-input">React</label>
                           </div>
                         </li>
                         <li>
                           <div class="form-check form-check-flat form-check-primary">
                             <label class="form-check-label">
-                              <input type="checkbox" name="skill[]" value="network" class="form-check-input"> Networking
+                              <input type="checkbox" name="skill" value="network" class="form-check-input"> Networking
                             </label>
                           </div>
                         </li>
@@ -261,12 +262,17 @@
 
 
                           <div class="d-flex mt-4 flex-row justify-content-between mb-2">
-                            <p class="card-title ">ID No : </p>
+                            <p class="card-title ">ID No </span></p>
                             <p class="text-muted">{{ student.Id_number }}</p>
                           </div>
+                          
                         </div>
+                        
                       </div>
+                      
                     </div>
+                    <a class="btn btn-primary btn-lg btn-block mt-4" href="student/{{ student.Id_number }}">
+                      <i class="mdi mdi-arrow-right"></i> See Profile </a>
                   </div>
                 </div>
 

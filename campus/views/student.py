@@ -18,7 +18,7 @@ from ..filters import AchievementFilter
 
 
 # from ..decorators import students_required
-from ..models import  Student, Events,Achievement,Exams,Project, User,Marks,Skills,Skill_list
+from ..models import  Student, Events,Achievement,Exams,Project, User,Marks,Skills,Skill_list,Like
 from ..forms import DocumentForm
 
 
@@ -200,6 +200,31 @@ def skills(request):
     else:
         return redirect('students/login')
 
+
+
+def like_project(request):
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            user = request.user
+            p_name = request.POST.get('pname')
+            project = Project.objects.get(project_name=p_name)
+
+            if user in project.likes.all():
+                project.likes.remove(user)
+            else:
+                project.likes.add(user)
+            
+            like ,created  = Like.objects.get_or_create(user=user,project=project)
+
+            if not created:
+                if like.value == "Like":
+                    like.value = "Unlike"
+                else:
+                    like.value = "Like"
+            like.save()
+        return redirect('/students/project_see')
+    else:
+        return redirect('students/login')
 
 def StudentProjectsee(request):
     if request.user.is_authenticated and request.user.is_student:

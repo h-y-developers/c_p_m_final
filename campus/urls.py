@@ -37,11 +37,11 @@ from django.conf.urls import url
 
 # from .views.c_admin import (AdminForgetPassView,AdminLogoutView,AdminLoginView,AdminStudentView, AdminFacultyView, AdminAddAdminView,AdminCompanyView)
 
-from .views.student import (skills,StudentProjectsee,StudentProfileUpdateView,StudentCertificateView,StudentForgetPassView,StudentLogoutView,StudentLoginView,StudentProfileView, StudentDashboardView,StudentAchievementView,StudentExamView,StudentAddProjectView,StudentEventView,Studentproject,StudentProfileSettingView)
+from .views.student import (like_project,skills,StudentProjectsee,StudentProfileUpdateView,StudentCertificateView,StudentForgetPassView,StudentLogoutView,StudentLoginView,StudentProfileView, StudentDashboardView,StudentAchievementView,StudentExamView,StudentAddProjectView,StudentEventView,Studentproject,StudentProfileSettingView)
 
 from .views.c_admin import (AdminForgetPassView,AdminLogoutView,AdminLoginView,AdminStudentView, AdminFacultyView, AdminAddAdminView,AdminCompanyView,AdminStudentMarksView,AdminProfileSettingView)
 
-from .views.company import (CompanyProfileView,CompanyProfileUpdateView,CompanyProjectView,CompanyForgetPassView,CompanyLoginView,CompanyLogoutView,CompanyDashboardView,CompanyFindCandidate,CompanyRequirements,CompanyProfileSettingView,CompanyFindCandidateFilter)
+from .views.company import (CompanyStudentProfileView,CompanyProfileView,CompanyProfileUpdateView,CompanyProjectView,CompanyForgetPassView,CompanyLoginView,CompanyLogoutView,CompanyDashboardView,CompanyFindCandidate,CompanyRequirements,CompanyProfileSettingView,CompanyFindCandidateFilter)
 
 from .views.faculty import (FacultyForgetPassView,FacultyLogoutView,FacultyLoginView,FacultyDashboardView,FacultyProfileView,FacultyEventView,FacultyAddEventView,FacultyProfileSettingView,FacultyEditEventView,FacultyDeleteEventView)
 
@@ -176,7 +176,7 @@ urlpatterns = [
     path('company/profile/<str:slug>', CompanyProfileView, name='company_profile'),
     path('company/profile/<str:slug>/update', CompanyProfileUpdateView, name='company_edit_profile'),
     path('company/edit_profile/<str:slug>', CompanyProfileSettingView, name='company_profile_setting'),
-    
+    path('company/student/<str:slug>', CompanyStudentProfileView, name='company_student_profile'),
     path('forgetPassword',ForgetPasswordView,name="forget_password"),
 
     # path('activate/<uidb64>/<token>/', ActivateAccount.as_view(), name='activate'),
@@ -184,7 +184,8 @@ urlpatterns = [
     #     activate, name='activate'),
     path('activate/<slug:slug>/<slug:token>',ActivateView,name="activate_link"),
     path('changePassword/<str:slug>',ChangePasswordView,name="change_password"),
-    path('profile_setting/<str:slug>',ProfileSettingView,name="profile_setting")
+    path('profile_setting/<str:slug>',ProfileSettingView,name="profile_setting"),
+    path('likes',like_project,name="liked")
     # path('c_admin/', c_admin.AdminAddAdminView, name='admin_dashboard'),
     # path('c_admin/index', c_admin.AdminAddAdminView, name='admin_add_admin'),
     # path('c_admin/add_company', c_admin.AdminCompanyView, name='admin_add_company'),

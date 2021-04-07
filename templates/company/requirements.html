@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% block title %}
+  <title>{{ request.user.username }} | Add Requirements</title>
+{% endblock title %}
 {% block content %}
 <div class="container-scroller">
   <!-- partial:partials/_sidebar.html -->

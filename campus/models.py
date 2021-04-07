@@ -296,15 +296,15 @@ class Faculties(models.Model):
 
 
 
-class Project(models.Model):
-    project_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-    # subject_id = models.CharField(max_length=100)
-    student_name = models.CharField(max_length = 100)
-    project_name= models.CharField(max_length = 100,blank=True)
-    description = models.CharField(max_length = 500,blank=True)
-    url = models.URLField(max_length=100,blank=True)
-    rating_star = models.CharField(max_length =3,default="0")
-    college_name = models.CharField(max_length =100, default="BVM")
+# class Project(models.Model):
+#     project_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+#     # subject_id = models.CharField(max_length=100)
+#     student_name = models.CharField(max_length = 100)
+#     project_name= models.CharField(max_length = 100,blank=True)
+#     description = models.CharField(max_length = 500,blank=True)
+#     url = models.URLField(max_length=100,blank=True)
+#     rating_star = models.CharField(max_length =3,default="0")
+#     college_name = models.CharField(max_length =100, default="BVM")
 # class Project(models.Model):
 #     project_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
 #     # subject_id = models.CharField(max_length=100)
@@ -399,6 +399,49 @@ class Requirements(models.Model):
     def __str__(self):
         return self.company_name
 
+
+
+
+
+class Project(models.Model):
+    project_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    
+    student_name = models.CharField(max_length = 100)
+    project_name= models.CharField(max_length = 100,blank=True)
+    description = models.CharField(max_length = 500,blank=True)
+    url = models.URLField(max_length=100,blank=True)
+    
+    likes = models.ManyToManyField(User,default=None,blank=True)
+
+
+    def __str__(self):
+        return self.project_name
+
+    def num_likes(self):
+        return self.likes.all.count()
+
+
+
+like_choices = (
+    ('Like','Like'),
+    ('Unlike','Unlike'),
+)
+
+
+class Like(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    project = models.ForeignKey(Project,on_delete=models.CASCADE)
+    value = models.CharField(choices=like_choices,default='Like',max_length=10)
+
+    # def user_like_post(sender,instance, *args, **kwargs):
+    #     like = instance
+    #     project = like.project
+    #     sender = like.user
+    #     notify = Notification(project=project,sender=sender,user=User,notification_type=1)
+    #     notify.save()
+
+    def _str_(self):
+        return str(self.project)
 
 
 
