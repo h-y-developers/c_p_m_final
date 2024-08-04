@@ -1,0 +1,204 @@
+{% extends 'base.html' %}
+{% block title %}
+  <title>request.user.username | Skills</title>
+{% endblock title %}
+{% load static %}
+{% block extracss %}
+  <style>
+    .card_checked{
+      border: 1px solid rgba(66, 66, 168, 0.555);
+    }
+    
+    .card_checked .skill_icon{
+      color: rgba(66, 66, 168, 0.555);
+    }
+    .card:hover{
+      border:0.5px solid rgba(66, 66, 168, 0.555);
+      transition: 0.3s ease-in;
+      
+    }
+    .skill_icon{
+      position:absolute; 
+      color:rgba(10, 1, 1, 0.568); 
+      top:50%; 
+      left:50%; 
+      transform: translate(-50%,-50%);  
+      font-size: 150px;
+      width: 150px;
+    }
+    .card:hover .skill_icon{
+      color:rgba(66, 66, 168, 0.555);
+      transition: 0.3s ease-in;
+    }
+  </style>
+{% endblock extracss %}
+{% block content %}
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script>
+
+    
+    $(document).ready(function()
+    {
+        $('.ckval').click(function()
+        {
+          var txt =""
+        $('.ckval:checked').each(function()
+        {
+          txt+=$(this).val()+",";
+        })
+          txt=txt.substring(0,txt.length-1);
+          $('#sk').val(txt);
+        });
+    });
+
+
+     $(document).ready(function()
+    {
+        $('.ckval1').click(function()
+        {
+          var txt = ""
+        $('.ckval1:checked').each(function()
+        {
+          txt+=$(this).val()+",";
+        })
+          txt=txt.substring(0,txt.length-1);
+          $('#inte').val(txt);
+        });
+    });
+</script>
+
+
+<div class="container-scroller">
+  <!-- partial:partials/_sidebar.html -->
+  {% include 'navbar.html' %}
+  <!-- partial -->
+  <div class="container-fluid page-body-wrapper">
+    <!-- partial:partials/_navbar.html -->
+   
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+     <form method="POST" action="/students/skills" enctype="multipart/form-data">   
+     {% comment %} {% csrf_token %} {% endcomment %}
+        <div class="row">
+<!--             
+             -->
+        <form action="/students/skills" method="POST">
+          {% csrf_token %}     
+         <div class="container my-4">
+                {% for message in messages %}
+            <div class="form-group mt-4 mb-4 {{ message.tags }} alert-dismissible fade show" role="alert">
+              {{ message }}
+              
+            </div>
+            {% endfor %}
+                <div class="d-flex flex-row justify-content-between mb-3">
+                  <h4 class="card-title text-muted mt-2 mb-1">Skills</h4>
+                  <button type="submit" style="border-radius:100% ; height: 4rem;  width: 4rem; position: fixed; bottom: 30px; right: 30px; font-size: 2rem; display: inline-block; padding-left: 15px; line-height: 48px; z-index: 99;" class="btn btn-primary"><i class="mdi mdi-check" style=""></i></button>
+                  
+                </div>
+              
+         </div>    
+ 
+          {% for skill in skills %}
+
+          <div class=" col-md-3 col-xl-4 grid-margin stretch-card " style="display: block;">
+            {% if  skill.skill_name  in own_skill  %}
+            <div class="card skill_card " >
+            
+            <input type="checkbox" name="skills" value="{{ skill.skill_name }}" style="display: none;" class="card_check card_check-{{skill.id}}" checked>
+            <div class="card-body card_body-{{ skill.id }} card_checked">
+
+              <div class="d-flex flex-row justify-content-between mb-4">
+                <h4 class="card-title">{{ skill.skill_name }}</h4>
+                <p><span class="mdi mdi-check skill_check-{{ skill.id }}"   style="position:relative; top:-10px; font-size: 20px; color: rgba(66, 66, 168, 0.555); display: block;"></span></p>
+                
+              </div>
+
+              {% else %}
+              <div class="card skill_card" >
+            
+                <input type="checkbox" name="skills" value="{{ skill.skill_name }}" style="display: none;" class="card_check card_check-{{skill.id}}">
+                <div class="card-body card_body-{{ skill.id }}">
+    
+                  <div class="d-flex flex-row justify-content-between mb-4">
+                    <h4 class="card-title">{{ skill.skill_name }}</h4>
+                    <p><span class="mdi mdi-check skill_check-{{ skill.id }}"   style="position:relative; top:-10px; font-size: 20px; color: rgba(66, 66, 168, 0.555); display: none;"></span></p>
+                    
+                  </div>
+              {% endif %}
+              
+              
+                <div class="achieve_item">
+                  <div  style="height: 150px; width: 100%;" alt=""><span class="{{ skill.icon }}   skill_icon" style="padding-top: 3rem;"></span></div>
+                </div>
+                <!-- <div class="item">
+                  <img src="assets/images/dashboard/Img_5.jpg" alt="">
+                </div>
+                <div class="item">
+                  <img src="assets/images/dashboard/img_6.jpg" alt="">
+                </div> -->
+              
+
+              
+            </div>
+          </div>
+        </div>
+       {% endfor %}
+         <input type="hidden" name="sk" id="sk">
+          
+         </form>
+         
+              
+          
+           
+          
+      <!-- partial -->
+    </div>
+    <!-- main-panel ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
+</div>
+</div>
+
+
+<!-- End custom js for this page -->
+{% endblock content %}
+
+{% block extrajs %}
+<script>
+
+  $(document).ready(function(){
+    $('.skill_card').each(function(i,obj){
+      
+        
+      $(this).on('click',()=>{
+        var txt =""
+        var checkbox_class = '.card_check-'+(i+1);
+        var card_body = '.card_body-'+(i+1);
+        var skill_checkk = '.skill_check-'+(i+1);
+        
+        if($(checkbox_class).prop("checked")== false){
+          $(checkbox_class).prop("checked",true)
+          $(card_body).addClass('card_checked')
+          $(skill_checkk).css({"display":"block"})
+          
+        }
+        else if ($(checkbox_class).prop("checked") == true){
+          $(checkbox_class).prop("checked",false)
+          $(card_body).removeClass('card_checked')
+          $(skill_checkk).css({"display":"none"})
+        }
+        $('.card_check:checked').each(function()
+        {
+          txt+=$(this).val()+",";
+        })
+          txt=txt.substring(0,txt.length-1);
+          $('#sk').val(txt);
+      })
+
+    })
+  })
+</script>
+
+{% endblock extrajs %}

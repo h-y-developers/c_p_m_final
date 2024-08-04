@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% block title %}
+  <title>Achievements</title>
+{% endblock title %}
+{% block content %}
+    
+{% load static %}
+    <div class="container-scroller">
+      <!-- partial:partials/_sidebar.html -->
+      {% include 'navbar.html' %}
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_navbar.html -->
+       
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+         <form method="GET" action="" enctype="multipart/form-data">   
+         {% comment %} {% csrf_token %} {% endcomment %}
+            <div class="row">
+<!--             
+                 -->
+             <div class="container my-4">
+                    {% for message in messages %}
+                <div class="form-group mt-4 mb-4 {{ message.tags }} alert-dismissible fade show" role="alert">
+                  {{ message }}
+                  
+                </div>
+                {% endfor %}
+                    <div class="d-flex flex-row justify-content-between mb-3">
+                      <h4 class="card-title text-muted mt-2 mb-1">Achievements</h4>
+                      <a href="/students/add_achievement" style="border-radius:100% ; height: 4rem;  width: 4rem; position: fixed; bottom: 30px; right: 30px; font-size: 2rem; display: inline-block; padding-left: 15px; line-height: 48px; z-index: 99;" class="btn btn-primary"><i class="mdi mdi-plus" style=""></i></a>
+                      <select name="achieve_type" class="achieve_type text-muted typeahead achieve_type col-4 mb-1">
+                          <option class="text-muted mb-1" value="0">All</option>
+                          <option class="text-muted mb-1" value="Developing">Developing</option>
+                          <option class="text-muted mb-1" value="Designing">Designing</option>
+                          <option class="text-muted mb-1" value="Workshops">Workshops</option>
+                          <option class="text-muted mb-1" value="Non_Cultural_Events">Non Cultural Events</option>
+                      </select>
+                    </div>
+                  
+             </div>    
+
+             {% for achievement in achievements %}
+                
+                <div class="{{ achievement.field_type }} col-md-3 col-xl-4 grid-margin stretch-card" style="display: block;">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title certi_type">{{ achievement.field_type }}</h4>
+                    
+                      <div class="achieve_item">
+                        <img src= "/media/{{ achievement.certificate_img }}" style="height: 150px;" alt="">
+                      </div>
+                      <!-- <div class="item">
+                        <img src="assets/images/dashboard/Img_5.jpg" alt="">
+                      </div>
+                      <div class="item">
+                        <img src="assets/images/dashboard/img_6.jpg" alt="">
+                      </div> -->
+                    
+                    <div class="d-flex py-3">
+                      <div class="preview-list w-100">
+                        <div class="preview-item p-0">
+                          <!-- <div class="preview-thumbnail">
+                            <img src="assets/images/faces/face12.jpg" class="rounded-circle" alt="">
+                          </div> -->
+                          <div class="preview-item-content d-flex flex-grow">
+                            <div class="flex-grow">
+                              <div class="d-flex d-md-block d-xl-flex justify-content-between">
+                                <h6 class="preview-subject">{{ achievement.certificate_name }}</h6>
+                              </div><p class="text-muted">{{ achievement.issuer_name }}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+
+             {% endfor %}
+                  
+              
+               
+              
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+  </div>
+
+
+    {% endblock content %}
+
+
+    {% block extrajs %}
+
+      <script>
+        $(document).ready(function(){
+          $('.achieve_type').on('change',function(){
+            var a = $(this).val()
+            if(a == 'Developing'){
+              $('.Developing').css({"display":"block"});
+              $('.Designing').css({"display":"none"});
+              $('.Non_Cultural_Events').css({"display":"none"});
+              $('.Workshops').css({"display":"none"});
+            }
+            if(a == 'Designing'){
+              $('.Developing').css({"display":"none"});
+              $('.Designing').css({"display":"block"});
+              $('.Non_Cultural_Events').css({"display":"none"});
+              $('.Workshops').css({"display":"none"});
+            }
+            if(a == 'Non_Cultural_Events'){
+              $('.Developing').css({"display":"none"});
+              $('.Designing').css({"display":"none"});
+              $('.Non_Cultural_Events').css({"display":"block"});
+              $('.Workshops').css({"display":"none"});
+            }
+            if(a == 'Workshops'){
+              $('.Developing').css({"display":"none"});
+              $('.Designing').css({"display":"none"});
+              $('.Non_Cultural_Events').css({"display":"none"});
+              $('.Workshops').css({"display":"block"});
+            }
+            if(a == '0'){
+              $('.Developing').css({"display":"block"});
+              $('.Designing').css({"display":"block"});
+              $('.Non_Cultural_Events').css({"display":"block"});
+              $('.Workshops').css({"display":"block"});
+            }
+            
+          })
+        })
+      </script>
+
+    {% endblock extrajs %}

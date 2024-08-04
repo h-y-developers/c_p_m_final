@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Add Students</title>
+{% endblock title %}
+{% block content %}
+
+    <div class="container-scroller">
+      <!-- partial:partials/_sidebar.html -->
+      {% include 'navbar_a.html' %}
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_navbar.html -->
+        
+        <!-- main content -->
+        <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="content mb-4">
+                <h4><b><center>BVM College of Engineering</center></b></h4>
+            </div>
+          {% comment %} <div class="row">
+        <div class="col-md-6 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Branch</h4>
+              <div class="form-group">
+                <label>Select Branch</label>
+                <select class="js-example-basic-single text-muted typeahead mt-2 mb-1" style="width:100%">
+                  <option class="text-muted mb-1" value="AL">Mechanical</option>
+                  <option class="text-muted mb-1" value="WY">Civil</option>
+                  <option class="text-muted mb-1" value="AM">Electronics</option>
+                  <option class="text-muted mb-1" value="CA">Electrical</option>
+                  <option class="text-muted mb-1" value="RU">Computer</option>
+                  <option class="text-muted mb-1" value="RU">Information Technology</option>
+                  <option class="text-muted mb-1" value="RU">EC</option>
+                  <option class="text-muted mb-1" value="RU">Production</option>
+                </select>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Year</h4>
+              <div class="form-group">
+                <label>Select Year</label>
+                <select class="js-example-basic-single text-muted typeahead mt-2 mb-1" style="width:100%">
+                  <option class="text-muted mb-1" value="AL">1</option>
+                  <option class="text-muted mb-1" value="WY">2</option>
+                  <option class="text-muted mb-1" value="AM">3</option>
+                  <option class="text-muted mb-1" value="CA">4</option>
+                
+                </select>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+          </div> {% endcomment %}
+        
+        
+         
+<form method="POST" enctype="multipart/form-data" action="/c_admin/add_student">
+{% csrf_token %}
+<div class="row">       
+        <div class="col-md-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+        <div class="form-group">
+            <label class="mb-4">File upload</label>
+            <input type="file" name="xl_data" class="file-upload-default" required>
+            <div class="input-group col-xs-12">
+              <input type="text" class="form-control file-upload-info" disabled placeholder="Upload CSV File" required>
+              <span class="input-group-append">
+                <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+              </span>
+            </div>
+            {% for message in messages %}
+                <div class="form-group mt-4 mb-4 {{ message.tags }} alert-dismissible fade show" role="alert">
+                  {{ message }}
+                  
+                </div>
+                {% endfor %}
+                <div class="form-group row">
+              <div class="col-md-12 mt-4 text-center">
+                
+                <button type="submit" class="btn btn-primary btn-icon-text mr-4">
+                  <i class="mdi mdi-file-check btn-icon-prepend"></i> Submit </button>
+
+                <a href="#" download="Student_template.xlsx" type="submit" class="btn btn-info btn-icon-text mr-4">
+                  <i class="mdi mdi-download btn-icon-prepend"></i> Download Template </a>
+               
+                
+                 
+                  </div>
+            
+            </div>
+          </div>
+          </div>
+          </div>
+          </div>
+
+           
+          </form>
+          </div>
+          
+        </div>
+        
+{% endblock content %}

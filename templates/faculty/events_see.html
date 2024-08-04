@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block title %}
+  <title> Events</title>
+{% endblock title %}
+{% block content %}
+
+{% load static %}
+<div class="container-scroller">
+  <!-- partial:partials/_sidebar.html -->
+  {% include 'navbar_f.html' %}
+  <!-- partial -->
+  <div class="container-fluid page-body-wrapper">
+    <!-- partial:partials/_navbar.html -->
+
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <form action="/faculty/events" enctype="multipart/form-data">
+          {% comment %} {% csrf_token %} {% endcomment %}
+          <div class="row">
+            <!--             
+                 -->
+            <div class="container my-4">
+              
+              <h4 class="card-title text-muted mt-2 mb-1"> Events</h4>
+            
+            </div>
+            
+            {% for event in events %}
+              
+            <div class="col-md-3 col-xl-4 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-row justify-content-between mb-2">
+                    <h4 class="card-title ">{{ event.event_name }}</h4>
+                    <p class="text-muted">{{ event.event_date }}</p>
+                  </div>
+                  
+                  
+                  <div class="achieve_item">
+                    <img src="/media/{{ event.file }}" style="height: 150px;" alt="">
+                  </div>
+                  
+                  <div class="d-flex d-md-block d-xl-flex mt-4 justify-content-between">
+                              <p class="card-description text-muted" style="height:100px; width:100%; overflow-y:scroll;"> {{ event.instructions }}
+                              </p>
+                              
+                            </div>
+
+                            <div class="row">
+                              <div class="col-md-12  text-center">
+                                
+                                <a href="/faculty/edit_event/{{ event.slug }}" class="btn btn-inverse-primary  btn-icon-text mr-4" style="border-radius: 50%; height:50px; width:50px;font-size: 1.3rem; display: inline-block; padding-left: 15px; line-height: 35px;">
+                                  <i class="text-center mdi mdi-pencil btn-icon-prepend"></i>  </a>
+                               
+                                
+                                  <a href="/faculty/delete_event/{{ event.slug }}" class="btn btn-inverse-danger btn-icon-text"  style="border-radius: 50%; height:50px; width:50px;font-size: 1.3rem; display: inline-block; padding-left: 13px; line-height: 35px;">
+                                    <i class="mdi mdi-delete btn-icon-prepend"></i>  </a>
+                                  </div>
+                            
+                            </div>
+
+                <!-- <a class="btn btn-primary btn-lg btn-block mt-4" href="{{ event.url }}">
+                                <i class="mdi mdi-arrow-right"></i> Register Now </a> -->
+                </div>
+              </div>
+            </div>
+
+            {% endfor %}
+
+
+
+
+            <!-- partial -->
+          </div>
+          <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+  </div>
+
+
+  {% endblock content %}

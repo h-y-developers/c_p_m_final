@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}
+  <title> {{request.user.username }} | Profile</title>
+{% endblock title %}
+{% load static %}
+{% block content %}
+
+<div class="container-scroller">
+  {% include 'navbar_f.html' %}
+  <div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <form method="POST" action="/faculty/edit_profile/{{ faculty.slug }}" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title text-muted mb-4">Edit Profile Picture</h4>
+                <!-- <p class="card-description">Show Case Your Talent </p> -->
+                <br>
+                <div class="form-group">
+                  <center>
+                    
+                    <img src="/media/{{ faculty.profile_pic }}" id="profile_pic" style="height: 20rem; width:20rem; border-radius: 50%;">
+                  <br>
+                  <input type="file" name="profile_pic" class="file-upload-default"  onchange="document.getElementById('profile_pic').src= window.URL.createObjectURL(this.files[0])"> 
+              
+                  <button class="file-upload-browse btn btn-success mt-4 btn-icon-text"  type="button" style="overflow: hidden;">
+                    <i class="mdi mdi-pencil btn-icon-prepend"></i> Edit Profile Picture 
+                  </button>
+                    <button type="submit" class="btn btn-primary mt-4 btn-icon-text ml-4">
+                      <i class="mdi mdi-file-check btn-icon-prepend"></i> Submit </button>
+                  </center>
+                  
+                </div>
+                
+                
+                
+
+        </form>
+
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- End custom js for this page -->
+{% endblock content %}

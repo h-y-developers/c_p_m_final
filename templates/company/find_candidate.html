@@ -1,0 +1,457 @@
+{% extends 'base.html' %}
+{% block title %}
+  <title>{{ request.user.username }} | Students</title>
+{% endblock title %}
+{% block content %}
+
+{% load static %}
+
+<div class="container-scroller">
+
+  <!-- partial:partials/_sidebar.html -->
+  {% include 'navbar_company.html' %}
+  <!-- partial -->
+  <div class="container-fluid page-body-wrapper">
+    <!-- partial:partials/_navbar.html -->
+
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <form method="GET" action="/company/Find_candidate/filter" enctype="multipart/form-data">
+          {% comment %} {% csrf_token %} {% endcomment %}
+          <div class="row">
+            <!--             
+                 -->
+            <div class="container my-4">
+              {% for message in messages %}
+              <div class="form-group mt-4 mb-4 {{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+
+              </div>
+              {% endfor %}
+              <div class="d-flex flex-row justify-content-between mb-3">
+                <h4 class="card-title text-muted mt-2 mb-1">Students</h4>
+                <select name="achieve_type" class="achieve_type text-muted typeahead col-4 mb-1">
+                  {% if dept == "All" %}
+                  <option value="All" selected="selected">All</option>
+                  <option value="Mechanical">Mechanical</option>
+                  <option value="EC">EC</option>
+                  <option value="Civil">Civil</option>
+                  <option value="IT">IT</option>
+                  <option value="EL">EL</option>
+                  <option value="EE">EE</option>
+                  <option value="Production">Production</option>
+                  {% elif dept == "Mechanical" %}
+                  <option value="All">All</option>
+                  <option value="Mechanical" selected>Mechanical</option>
+                  <option value="EC">EC</option>
+                  <option value="Civil">Civil</option>
+                  <option value="IT">IT</option>
+                  <option value="EL">EL</option>
+                  <option value="EE">EE</option>
+                  <option value="Production">Production</option>
+                  {% elif dept == "EC" %}
+                  <option value="All">All</option>
+                  <option value="Mechanical">Mechanical</option>
+                  <option value="EC" selected>EC</option>
+                  <option value="Civil">Civil</option>
+                  <option value="IT">IT</option>
+                  <option value="EL">EL</option>
+                  <option value="EE">EE</option>
+                  <option value="Production">Production</option>
+                  {% elif dept == "Civil" %}
+                  <option value="All">All</option>
+                  <option value="Mechanical">Mechanical</option>
+                  <option value="EC">EC</option>
+                  <option value="Civil" selected>Civil</option>
+                  <option value="IT">IT</option>
+                  <option value="EL">EL</option>
+                  <option value="EE">EE</option>
+                  <option value="Production">Production</option>
+                  {% elif dept == "IT" %}
+                  <option value="All">All</option>
+                  <option value="Mechanical">Mechanical</option>
+                  <option value="EC">EC</option>
+                  <option value="Civil">Civil</option>
+                  <option value="IT" selected>IT</option>
+                  <option value="EL">EL</option>
+                  <option value="EE">EE</option>
+                  <option value="Production">Production</option>
+                  {% elif dept == "EL" %}
+                  <option value="All">All</option>
+                  <option value="Mechanical">Mechanical</option>
+                  <option value="EC">EC</option>
+                  <option value="Civil">Civil</option>
+                  <option value="IT">IT</option>
+                  <option value="EL" selected>EL</option>
+                  <option value="EE">EE</option>
+                  <option value="Production">Production</option>
+                  {% elif dept == "EE" %}
+                  <option value="All">All</option>
+                  <option value="Mechanical">Mechanical</option>
+                  <option value="EC">EC</option>
+                  <option value="Civil">Civil</option>
+                  <option value="IT">IT</option>
+                  <option value="EL">EL</option>
+                  <option value="EE" selected>EE</option>
+                  <option value="Production">Production</option>
+                  {% elif dept == "Production" %}
+                  <option value="All">All</option>
+                  <option value="Mechanical">Mechanical</option>
+                  <option value="EC">EC</option>
+                  <option value="Civil">Civil</option>
+                  <option value="IT">IT</option>
+                  <option value="EL">EL</option>
+                  <option value="EE">EE</option>
+                  <option value="Production" selected>Production</option>
+                  {% else %}
+                  <option value="All" selected>All</option>
+                  <option value="Mechanical">Mechanical</option>
+                  <option value="EC">EC</option>
+                  <option value="Civil">Civil</option>
+                  <option value="IT">IT</option>
+                  <option value="EL">EL</option>
+                  <option value="EE">EE</option>
+                  <option value="Production">Production</option>
+                  {% endif %}
+                </select>
+                <div id="mySidenav" class="sidebar sidenav">
+
+                  <!-- <a href="#">About</a>
+                        <a href="#">Services</a>
+                        <a href="#">Clients</a>
+                        <a href="#">Contact</a> -->
+
+                  <div class="row justify-content-between">
+                    <span class="text-muted" style="position: absolute; top:28px; left:30px;">Filters</span>
+                    <a href="javascript:void(0)" class="closebtn text-muted text-align" onclick="closeNav()"><i
+                        class="mdi mdi-arrow-right"></i></a>
+                  </div>
+                  <div class="row">
+                    <button style="width: 100%; margin:1rem 3rem;" class="btn btn-primary filter_btn">Apply</button>
+                  </div>
+                  <div class="row">
+                    <a href="/company/Find_candidate" style="width: 100%; margin:0.5rem 3rem 1rem 3rem;" class="btn btn-danger filter_btn">Clear Filters</a>
+                  </div>
+                  <div class="filter-form-div">
+                    <!-- <span class="" style="position: relative; margin-top:28px;top:0; left:35px;">Branch</span> -->
+                    <span>Branch</span>
+                    <form class="forms-sample">
+                      <ul class=" filter-class mt-1" style="">
+
+
+                        <li class="filter_li">
+                          <div class="form-check form-check-flat form-check-primary">
+                            <label class="form-check-label">
+                              <input type="radio" name="student_year" value="1" class="form-radio-input year_radio"> 1st
+                              Year </label>
+                          </div>
+                        </li>
+                        <li class="filter_li">
+                          <div class="form-check form-check-flat form-check-primary">
+                            <label class="form-check-label">
+                              <input type="radio" name="student_year" value="2" class="form-radio-input year_radio"> 2nd
+                              Year </label>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="form-check form-check-flat form-check-primary">
+                            <label class="form-check-label">
+                              <input type="radio" name="student_year" value="3" class="form-radio-input year_radio"> 3rd
+                              Year </label>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="form-check form-check-flat form-check-primary">
+                            <label class="form-check-label">
+                              <input type="radio" name="student_year" value="4" class="form-radio-input year_radio"> 4th
+                              Year </label>
+                          </div>
+                        </li>
+
+                        <!--  -->
+                      </ul>
+                    </form>
+                  </div>
+                  
+
+
+
+                  <div class="filter-form-div">
+                    <span class="" style="">Skills</span>
+                    <form class="forms-sample">
+                      <ul class=" filter-class mt-1" style=" ">
+
+
+                        <li class="filter_li">
+                          <div class="form-check form-check-flat form-check-primary">
+                            <label class="form-check-label">
+                              <input type="checkbox" name="skill" value="web" class="form-check-input">Web Development                            </label>
+                          </div>
+                        </li>
+                        <li class="filter_li">
+                          <div class="form-check form-check-flat form-check-primary">
+                            <label class="form-check-label">
+                              <input type="checkbox" name="skill" value="app" class="form-check-input">App Development                            </label>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="form-check form-check-flat form-check-primary">
+                            <label class="form-check-label">
+                              <input type="checkbox" name="skill" value="cloud" class="form-check-input">Cloud
+                              Computing</label>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="form-check form-check-flat form-check-primary">
+                            <label class="form-check-label">
+                              <input type="checkbox" name="skill" value="react" class="form-check-input">React</label>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="form-check form-check-flat form-check-primary">
+                            <label class="form-check-label">
+                              <input type="checkbox" name="skill" value="network" class="form-check-input"> Networking
+                            </label>
+                          </div>
+                        </li>
+                        <!--  -->
+                      </ul>
+                    </form>
+                  </div>
+
+
+
+                </div>
+                <a id="filter-dropdown" onclick="openNav()"><span class="mdi mdi-filter text-muted" id="filterDiv"
+                    style="font-size:1.5rem; cursor: pointer;"></span></a>
+
+              </div>
+
+            </div>
+            
+            {% for student in students %}
+            {% if student.year != 'passout' %}
+            <div class="{{ student.dept }} {{ student.year }} col-md-6 col-xl-4 grid-margin stretch-card ">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-row justify-content-between mb-2">
+                    <h4 class=" text-muted">{{ student.dept }}</h4>
+                    <p class="text-muted ">{{ student.year }} year</p>
+                  </div>
+
+
+                  <div class="item center">
+                    <center>
+                      <img src="/media/profile_pictures/{{ student.profile_pic }}" style="height:150px; width:150px;"
+                        alt="" class="rounded-circle">
+                    </center>
+                  </div>
+
+                  {% comment %}
+                </div> {% endcomment %}
+                <div class="d-flex py-4">
+                  <div class="preview-list w-100">
+                    <div class="preview-item p-0">
+
+                      <div class="preview-item-content d-flex flex-grow">
+                        <div class="flex-grow">
+                          <center>
+                            <h4 class="preview-subject text-muted">{{ student.fname }} {{ student.lname }}</h4>
+                          </center>
+
+
+                          <div class="d-flex mt-4 flex-row justify-content-between mb-2">
+                            <p class="card-title ">ID No </span></p>
+                            <p class="text-muted">{{ student.Id_number }}</p>
+                          </div>
+                          
+                        </div>
+                        
+                      </div>
+                      
+                    </div>
+                    <a class="btn btn-primary btn-lg btn-block mt-4" href="student/{{ student.Id_number }}">
+                      <i class="mdi mdi-arrow-right"></i> See Profile </a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+
+
+
+
+          <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+</div>
+
+
+{% endblock content %}
+
+
+{% block extrajs %}
+
+<script>
+  $(document).ready(function () {
+    $('.achieve_type').on('change', function () {
+      var a = $(this).val()
+      if(a == 'Mechanical'){
+        $('.Mechanical').css({"display":"block"});
+        $('.EC').css({"display":"none"});
+        $('.Civil').css({"display":"none"});
+        $('.IT').css({"display":"none"});
+        $('.EL').css({"display":"none"});
+        $('.EE').css({"display":"none"});
+        $('.Production').css({"display":"none"});
+      }
+      if(a == 'EC'){
+        $('.Mechanical').css({"display":"none"});
+        $('.EC').css({"display":"block"});
+        $('.Civil').css({"display":"none"});
+        $('.IT').css({"display":"none"});
+        $('.EL').css({"display":"none"});
+        $('.EE').css({"display":"none"});
+        $('.Production').css({"display":"none"});
+      }
+      if(a == 'Civil'){
+        $('.Mechanical').css({"display":"none"});
+        $('.EC').css({"display":"none"});
+        $('.Civil').css({"display":"block"});
+        $('.IT').css({"display":"none"});
+        $('.EL').css({"display":"none"});
+        $('.EE').css({"display":"none"});
+        $('.Production').css({"display":"none"});
+      }
+      if(a == 'IT'){
+        $('.Mechanical').css({"display":"none"});
+        $('.EC').css({"display":"none"});
+        $('.Civil').css({"display":"none"});
+        $('.IT').css({"display":"block"});
+        $('.EL').css({"display":"none"});
+        $('.EE').css({"display":"none"});
+        $('.Production').css({"display":"none"});
+      }
+      if(a == 'EL'){
+        $('.Mechanical').css({"display":"none"});
+        $('.EC').css({"display":"none"});
+        $('.Civil').css({"display":"none"});
+        $('.IT').css({"display":"none"});
+        $('.EL').css({"display":"block"});
+        $('.EE').css({"display":"none"});
+        $('.Production').css({"display":"none"});
+      }
+      if(a == 'EE'){
+        $('.Mechanical').css({"display":"none"});
+        $('.EC').css({"display":"none"});
+        $('.Civil').css({"display":"none"});
+        $('.IT').css({"display":"none"});
+        $('.EL').css({"display":"none"});
+        $('.EE').css({"display":"block"});
+        $('.Production').css({"display":"none"});
+      }
+      if(a == 'Production'){
+        $('.Mechanical').css({"display":"none"});
+        $('.EC').css({"display":"none"});
+        $('.Civil').css({"display":"none"});
+        $('.IT').css({"display":"none"});
+        $('.EL').css({"display":"none"});
+        $('.EE').css({"display":"none"});
+        $('.Production').css({"display":"block"});
+      }
+      if(a == 'All'){
+        $('.Mechanical').css({"display":"block"});
+        $('.EC').css({"display":"block"});
+        $('.Civil').css({"display":"block"});
+        $('.IT').css({"display":"block"});
+        $('.EL').css({"display":"block"});
+        $('.EE').css({"display":"block"});
+        $('.Production').css({"display":"block"});
+      }
+
+      // $.ajax(
+      //   {
+      //     type: "GET",
+      //     url: "/company/Find_candidate/filter",
+      //     data: {
+      //       achieve_type: a
+      //     },
+      //     success: function (data) {
+
+      //     }
+      //   })
+
+    })
+    // $('.filter_btn').on('click',function(){
+    //   var year_val = $('.year_radio').val()
+    //   $.ajax(
+    //   {
+    //       type:"GET",
+    //       url: "/company/Find_candidate/filter",
+    //       data:{
+    //               year: year_val
+    //       },
+    //       success: function( data ) 
+    //       {
+    //           // $( '#like'+ catid ).remove();
+    //           // $( '#message' ).text(data);
+    //       }
+    //   })
+    // })
+    // $('.filter_btn').on('click',function(){
+    //   var b = $('.year_radio').val()
+
+    //   if(b == 1){
+    //       $('.1').css({"display":"block"});
+    //       $('.2').css({"display":"none"});
+    //       $('.3').css({"display":"none"});
+    //       $('.4').css({"display":"none"});
+    //   }
+    //   if(b == 2){
+    //     $('.1').css({"display":"none"});
+    //       $('.2').css({"display":"block"});
+    //       $('.3').css({"display":"none"});
+    //       $('.4').css({"display":"none"});
+    //   }
+    //   if(b==3){
+    //     $('.1').css({"display":"none"});
+    //       $('.2').css({"display":"none"});
+    //       $('.3').css({"display":"block"});
+    //       $('.4').css({"display":"none"});
+    //   }
+    //   if(b==4){
+    //     $('.1').css({"display":"none"});
+    //       $('.2').css({"display":"none"});
+    //       $('.3').css({"display":"none"});
+    //       $('.4').css({"display":"block"});
+    //   }
+
+    // })
+
+  })
+
+
+  // $(document).ready(function(){
+  //   $('#filter-dropdown').on('click',()=>{
+  //     $('#sidebar_filter').css({"display":"block"})
+  //   })
+  // })
+
+  function openNav() {
+    // $('#mySidenav').css({"display":"block"})
+    document.getElementById("mySidenav").style.width = "300px";
+  }
+  function closeNav() {
+    // $('#mySidenav').css({"display":"none"})
+    document.getElementById("mySidenav").style.width = "0";
+  }
+</script>
+`
+{% endblock extrajs %}

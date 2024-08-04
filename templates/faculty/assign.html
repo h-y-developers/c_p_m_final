@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% block title %}
+  <title>{{ request.user.username }} | Add Event</title>
+{% endblock title %}
+{% block content %}
+<div class="container-scroller">
+  <!-- partial:partials/_sidebar.html -->
+  {% include 'navbar_f.html' %}
+  <!-- partial -->
+  <div class="container-fluid page-body-wrapper">
+    <!-- partial:partials/_navbar.html -->
+
+    <!-- main content -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <form method="POST" action="/faculty/add_event" enctype="multipart/form-data">
+
+          {% csrf_token %}
+          {% comment %} <div class="row">
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Branch</h4>
+                  <div class="form-group">
+                    <label>Select Branch</label>
+                    <select class="js-example-basic-single text-muted typeahead mt-2 mb-1" style="width:100%">
+                      <option value="AL">Mechanical</option>
+                      <option value="WY">Civil</option>
+                      <option value="AM">Electronics</option>
+                      <option value="CA">Electrical</option>
+                      <option value="RU">Computer</option>
+                      <option value="RU">Information Technology</option>
+                      <option value="RU">EC</option>
+                      <option value="RU">Production</option>
+                    </select>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Year</h4>
+                  <div class="form-group">
+                    <label>Select Year</label>
+                    <select class="js-example-basic-single text-muted typeahead mt-2 mb-1" style="width:100%">
+                      <option value="AL">1</option>
+                      <option value="WY">2</option>
+                      <option value="AM">3</option>
+                      <option value="CA">4</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div> {% endcomment %}
+
+          <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title text-muted mb-4">Events</h4>
+
+
+                  <div class="form-group mb-4">
+                    <label for="" class="mb-2">Name of the event</label>
+                    <input type="text" class="form-control" id="title" name="event" placeholder="Event Name">
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="">Instructions</label>
+                    <textarea class="form-control" id="instrcution" name="instruction" placeholder="Instrusctions...."
+                      rows="6"></textarea>
+                  </div>
+                  <div class="form-group mb-4 ">
+                    <label for="">Date Of Event</label>
+                    <input type="date" value="{{ student.dob|date:" Y-m-d" }}" name="doe" class="form-control col-md-6"
+                      placeholder="" />
+                  </div>
+
+                  <div class="form-group mb-4">
+                    <label for="">URL</label>
+                    <input type="text" class="form-control" id="instrcution" name="url"
+                      placeholder="Url of form or Website">
+                  </div>
+
+                  <div class="form-group mb-4">
+                    <label>Event Poster</label>
+                    <input type="file" name="poster" class="file-upload-default">
+                    <div class="input-group col-xs-12">
+                      <input type="text" class="form-control file-upload-info" disabled placeholder="Upload PDF file">
+                      <span class="input-group-append">
+                        <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-md-12 mt-4 text-center">
+                      
+                      <button type="submit" class="btn btn-primary btn-icon-text mr-4">
+                        <i class="mdi mdi-file-check btn-icon-prepend"></i> Submit </button>
+      
+                      <button type="cancel" class="btn btn-danger btn-icon-text mr-4">
+                        <i class="mdi mdi-cancel btn-icon-prepend"></i> Cancel </button>   
+                     
+                      
+                       
+                        </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% for message in messages %}
+          <div class="form-group mt-4 mb-4 {{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+
+          </div>
+          {% endfor %}
+
+
+
+      </div>
+
+
+
+    </div>
+  </div>
+
+  {% endblock content %}

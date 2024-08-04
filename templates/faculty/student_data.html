@@ -1,0 +1,219 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container-scroller">
+      <!-- partial:partials/_sidebar.html -->
+      {% include 'navbar_f.html' %}
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar p-0 fixed-top d-flex flex-row">
+          <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
+            <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
+          </div>
+          <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
+            <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+              <span class="mdi mdi-menu"></span>
+            </button>
+            
+            <ul class="navbar-nav navbar-nav-right">
+              
+              
+              <li class="nav-item dropdown border-right">
+                <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+                  <i class="mdi mdi-bell"></i>
+                  <span class="count bg-danger"></span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                  <h6 class="p-3 mb-0">Notifications</h6>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item preview-item">
+                    <div class="preview-thumbnail">
+                      <div class="preview-icon bg-dark rounded-circle">
+                        <i class="mdi mdi-calendar text-success"></i>
+                      </div>
+                    </div>
+                    <div class="preview-item-content">
+                      <p class="preview-subject mb-1">Event today</p>
+                      <p class="text-muted ellipsis mb-0"> Just a reminder that you have an event today </p>
+                    </div>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item preview-item">
+                    <div class="preview-thumbnail">
+                      <div class="preview-icon bg-dark rounded-circle">
+                        <i class="mdi mdi-settings text-danger"></i>
+                      </div>
+                    </div>
+                    <div class="preview-item-content">
+                      <p class="preview-subject mb-1">Settings</p>
+                      <p class="text-muted ellipsis mb-0"> Update dashboard </p>
+                    </div>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item preview-item">
+                    <div class="preview-thumbnail">
+                      <div class="preview-icon bg-dark rounded-circle">
+                        <i class="mdi mdi-link-variant text-warning"></i>
+                      </div>
+                    </div>
+                    <div class="preview-item-content">
+                      <p class="preview-subject mb-1">Launch Admin</p>
+                      <p class="text-muted ellipsis mb-0"> New admin wow! </p>
+                    </div>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <p class="p-3 mb-0 text-center">See all notifications</p>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
+                  <div class="navbar-profile">
+                    <img class="img-xs rounded-circle" src="assets/images/faces/face15.jpg" alt="">
+                    <p class="mb-0 d-none d-sm-block navbar-profile-name">Henry Klein</p>
+                    <i class="mdi mdi-menu-down d-none d-sm-block"></i>
+                  </div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
+                  <h6 class="p-3 mb-0">Profile</h6>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item preview-item">
+                    <div class="preview-thumbnail">
+                      <div class="preview-icon bg-dark rounded-circle">
+                        <i class="mdi mdi-settings text-success"></i>
+                      </div>
+                    </div>
+                    <div class="preview-item-content">
+                      <p class="preview-subject mb-1">Settings</p>
+                    </div>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item preview-item">
+                    <div class="preview-thumbnail">
+                      <div class="preview-icon bg-dark rounded-circle">
+                        <i class="mdi mdi-logout text-danger"></i>
+                      </div>
+                    </div>
+                    <div class="preview-item-content">
+                      <p class="preview-subject mb-1">Log out</p>
+                    </div>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <p class="p-3 mb-0 text-center">Advanced settings</p>
+                </div>
+              </li>
+            </ul>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+              <span class="mdi mdi-format-line-spacing"></span>
+            </button>
+          </div>
+        </nav>
+        <!-- main content -->
+        <div class="content-wrapper">
+        <div class="main-panel">
+          <div class="row">
+        <div class="col-md-6 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Branch</h4>
+              <div class="form-group">
+                <label>Select Branch</label>
+                <select class="js-example-basic-single text-muted typeahead mt-2 mb-1" style="width:100%">
+                  <option class="text-muted mb-1" value="AL">Mechanical</option>
+                  <option class="text-muted mb-1" value="WY">Civil</option>
+                  <option class="text-muted mb-1" value="AM">Electronics</option>
+                  <option class="text-muted mb-1" value="CA">Electrical</option>
+                  <option class="text-muted mb-1" value="RU">Computer</option>
+                  <option class="text-muted mb-1" value="RU">Information Technology</option>
+                  <option class="text-muted mb-1" value="RU">EC</option>
+                  <option class="text-muted mb-1" value="RU">Production</option>
+                </select>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Year</h4>
+              <div class="form-group">
+                <label>Select Year</label>
+                <select class="js-example-basic-single text-muted typeahead mt-2 mb-1" style="width:100%">
+                  <option class="text-muted mb-1" value="AL">1</option>
+                  <option class="text-muted mb-1" value="WY">2</option>
+                  <option class="text-muted mb-1" value="AM">3</option>
+                  <option class="text-muted mb-1" value="CA">4</option>
+                
+                </select>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+          </div>
+        
+        
+         
+
+        <div class="content">
+            <h4><b><center>BVM College of Engineering</center></b></h4>
+        </div>
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Studnet Details</h4>
+                <!-- <p class="card-description"> Add class <code>.table-striped</code>
+                </p> -->
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th> Photo </th>
+                        <th> ID No. </th>
+                        
+                        <th> Name </th>
+                        <th> Branch </th>
+                        <th> Year </th>
+                        <th> Ratings </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="py-1">
+                          <img src="../../assets/images/faces-clipart/pic-1.png" alt="image" />
+                        </td>
+                        <td> Herman Beck </td>
+                        <td>
+                          <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </td>
+                        <td> $ 77.99 </td>
+                        <td> May 15, 2015 </td>
+                        <td><button type="button" class="btn btn-success btn-icon-text">
+                            <i class="mdi mdi-account btn-icon-prepend"></i> See profile </button></td>
+                      </tr>
+                      <tr>
+                        <td class="py-1">
+                          <img src="../../assets/images/faces-clipart/pic-2.png" alt="image" />
+                        </td>
+                        <td> Messsy Adam </td>
+                        <td>
+                          <div class="progress">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </td>
+                        <td> $245.30 </td>
+                        <td> July 1, 2015 </td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        
+{% endblock content %}

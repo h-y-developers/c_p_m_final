@@ -1,0 +1,272 @@
+  {% extends 'base.html' %}
+  {% block title %}
+  <title>{{ request.user.username }} | Dashboard</title>
+{% endblock title %}
+  {% block content %}
+    
+
+  <div class="container-scroller">
+    {% include 'navbar.html' %}
+  
+    <div class="container-fluid page-body-wrapper">
+  
+      <div class="main-panel">
+        <div class="content-wrapper">
+        <div class="row">
+          <div class="col-md-6 col-xl-4 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title ">{{ student.Id_number }}</h4>
+                      {% comment %} <div class="owl-carousel owl-theme full-width owl-carousel-dash portfolio-carousel" id="owl-carousel-basic"> {% endcomment %}
+                        <div class="item center">
+                        <center>
+                          <img src="/media/{{ request.user.profile_pic }}" style="height:150px; width:150px;" alt="" class="rounded-circle">
+                        </center>
+                        </div>
+                       
+                      {% comment %} </div> {% endcomment %}
+                      <div class="d-flex py-4">
+                        <div class="preview-list w-100">
+                          <div class="preview-item p-0">
+                            
+                            <div class="preview-item-content d-flex flex-grow">
+                              <div class="flex-grow">
+                                  <center><h4 class="preview-subject text-muted">{{ student.fname }} {{ student.lname }}</h4></center>
+                                
+                                <div class="d-flex mt-4 flex-row justify-content-between mb-2">
+                                  <p class="card-title ">Date Of Birth : </p>
+                                  <p class="text-muted">{{ student.dob }}</p>
+                                </div>
+                                
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+  
+                  <div class="col-md-8 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-6 mb-4">
+
+                          <h4 class="card-title mb-4">Address</h4>
+                          <address class="text-muted">
+                            <p >{{ student.permanent_address }}</p>
+                            <p>{{ student.city }}, {{ student.pincode }}</p>
+                             <p>{{ student.state }},</p>
+                            <p>{{ student.country }}</p>
+                          </address>
+                        </div>
+                        <div class="col-md-6">
+                          <h4 class="card-title mb-4">Contact Info</h4>
+                          <a href="mailto:{{ student.email }}" target='_blank' class="mb-2 text-muted">{{ student.email }} </a>
+                   
+                          <p class="mb-2 mt-3 text-muted">{{ student.mobile }} </p>
+                        </div>
+                        
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6 mt-4 mb-4">
+      
+                          <h4 class="card-title mb-4">Social Links</h4>
+                          <address class="text-muted">
+                            <a href="{{ student.website }}" target="_blank" class="btn btn-inverse-success  btn-icon-text mr-3"
+                              style="border-radius: 50%; height:50px; width:50px;font-size: 1.3rem; display: inline-block; padding-left: 13px; line-height: 35px;">
+                              <i class="text-center mdi mdi-web btn-icon-prepend"></i> </a>
+                            <a href="{{ student.fb_profile }}" target="_blank" class="btn btn-inverse-primary  btn-icon-text mr-3"
+                              style="border-radius: 50%; height:50px; width:50px;font-size: 1.3rem; display: inline-block; padding-left: 13px; line-height: 35px;">
+                              <i class="text-center mdi mdi-facebook btn-icon-prepend"></i> </a>
+                            <!-- <button type="button" class="btn btn-social-icon btn-inverse-facebook btn-rounded text-center"><i class="mdi mdi-facebook"></i></button> -->
+                            <a href="{{ student.linkedin_profile }}" target="_blank" class="btn btn-inverse-info  btn-icon-text mr-3"
+                              style="border-radius: 50%; height:50px; width:50px;font-size: 1.3rem; display: inline-block; padding-left: 13px; line-height: 35px;">
+                              <i class="text-center mdi mdi-linkedin btn-icon-prepend"></i> </a>
+                            <a href="{{ student.insta_profile }}" target="_blank" class="btn btn-inverse-danger  btn-icon-text mr-3"
+                              style="border-radius: 50%; height:50px; width:50px;font-size: 1.3rem; display: inline-block; padding-left: 13px; line-height: 35px;">
+                              <i class="text-center mdi mdi-instagram btn-icon-prepend"></i> </a>
+                          </address>
+                        </div>
+      
+      
+                      </div>
+                        <!-- <h4 class="card-title text-muted mb-2" style="margin-top: 4rem;">Email ID</h4>
+                        <div class="col-md-6">
+                          <address class="">
+                            
+                            <p class="mb-2">{{ student.email }} </p>
+                            
+                          </address>
+                        </div> -->
+                      <!-- </div> -->
+                    </div>
+                    <!-- <div class="card-body">
+                      <h4 class="card-title">Lead</h4>
+                      <p class="card-description"> Use class <code>.lead</code>
+                      </p>
+                      <p class="lead"> Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. </p>
+                    </div> -->
+                  </div>
+                </div>
+            </div>
+        
+  
+        <!-- <div class="row">
+          <div class="col-md-12 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">Address</h4>
+                      <p class="card-description"> Use <code>&lt;address&gt;</code> tag </p>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <address>
+                            <p class="font-weight-bold">Corona imc</p>
+                            <p> 695 lsom Ave, </p>
+                            <p> Suite 00 </p>
+                            <p> San Francisco, CA 94107 </p>
+                          </address>
+                        </div>
+                        <div class="col-md-4">
+                          <address class="text-primary">
+                            <p class="font-weight-bold"> E-mail </p>
+                            <p class="mb-2"> johndoe@examplemeail.com </p>
+                            <p class="font-weight-bold"> Web Address </p>
+                            <p> www.Corona.com </p>
+                          </address>
+                        </div>
+  
+                        <div class="col-md-4">
+                          <address class="text-primary">
+                            <p class="font-weight-bold"> E-mail </p>
+                            <p class="mb-2"> johndoe@examplemeail.com </p>
+                            <p class="font-weight-bold"> Web Address </p>
+                            <p> www.Corona.com </p>
+                          </address>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <h4 class="card-title">Lead</h4>
+                      <p class="card-description"> Use class <code>.lead</code>
+                      </p>
+                      <p class="lead"> Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. </p>
+                    </div>
+                  </div>
+                </div>
+  
+        </div> -->
+  
+          <div class="row">
+               <div class="col-md-4 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title mb-4">Projects</h4>
+                      <div class="card-description " style="height:200px; overflow-y:scroll;">
+                        {% for project in projects %}
+
+                      <p class="text-muted mt-3" style="font-size: 18px;">{{ project.project_name }}
+                      </p>
+                      <hr style="border-color: rgba(78, 78, 78,0.5);">
+                      {% endfor %}
+                      </div>
+                      
+                      
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="col-md-4 col-xl-4 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">Certificates</h4>
+                      
+                      <div class="card-description " style="height:200px; overflow-y:scroll;">
+                        {% for achieve in achievements %}
+
+                      <p class="text-muted mt-3" style="font-size: 18px;">{{ achieve.certificate_name }}
+                      </p>
+                      <hr style="border-color: rgba(78, 78, 78,0.5);">
+                      {% endfor %}
+                      </div>
+                      
+                      <!-- <div class="d-flex py-3">
+                        <div class="preview-list w-100">
+                          <div class="preview-item p-0">
+                          
+                            <div class="preview-item-content d-flex flex-grow">
+                              <div class="flex-grow">
+                                <div class="d-flex d-md-block d-xl-flex justify-content-between">
+                                  <h6 class="preview-subject">name of certi</h6>
+                                </div><p class="text-muted">Issuer name</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div> -->
+                      
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="col-md-12 col-xl-4 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">To do list</h4>
+                      <form  method='POST' action="/students/addtodo" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <div class="add-items d-flex">
+                        <input type="text" class="form-control todo-list-input" name="task" placeholder="enter task..">
+                        <button  type="submit" class="add btn btn-primary todo-list-add-btn">Add</button>
+                      </div>
+                      </form>
+                      <form method='POST' action="/students/deletetodo" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <div class="list-wrapper" style="height:150px; overflow-y:scroll;">
+                        <ul class="d-flex flex-column-reverse text-white todo-list todo-list-custom">
+                          {% for task in tasks %}
+                          <li>
+                            <div class="form-check form-check-primary">
+                              <label class="form-check-label">
+                                <input class="checkbox" type="checkbox"> {{task.task}} </label>
+                            </div>
+                            <i type="submit" class="remove mdi mdi-close-box"></i>
+                          </li>
+                         {% endfor %} 
+                        </ul>
+                      </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                  
+          </div>
+  
+          
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- main 3 divs dont touch it -->
+        </div>
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+  
+        
+     
+
+    {% endblock content %}

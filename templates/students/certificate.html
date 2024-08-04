@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  <title>Add Certificate</title>
+{% endblock title %}
+{% block content %}
+
+<div class="container-scroller">
+  {% include 'navbar.html' %}
+  <div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <form method="POST" action="/students/add_achievement" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title text-muted mb-4">Awards & Certificates</h4>
+                <!-- <p class="card-description">Show Case Your Talent </p> -->
+                <br>
+                <div class="form-group">
+                  <label class="mb-2">Certificate Name</label>
+                  <input type="text" class="form-control" name="name" placeholder="Ex. Cloud ACE,IBM Data Science"
+                    required>
+                </div>
+                <div class="form-group">
+                  <label class="mt-4 mb-2">Authorize By</label>
+                  <input type="text" class="form-control" name="company" placeholder="Ex. Coursera, Google" required>
+                </div>
+                <div class="form-group">
+                  <label class="mt-4 mb-2">Field Type</label>
+                  <select name="field" class="text-muted typeahead col-4 mb-1">
+                    <option class="text-muted mb-1" value="Developing">Developing</option>
+                    <option class="text-muted mb-1" value="Designing">Designing</option>
+                    <option class="text-muted mb-1" value="Workshops">Workshops</option>
+                    <option class="text-muted mb-1" value="Non_Cultural_Events">Non Cultural Events</option>
+                  </select>
+                </div>
+
+
+
+                <div class="form-group">
+                  <label></label>
+
+                  <input type="file" name="certi" class="file-upload-default">
+                  <div class="input-group col-xs-12">
+                    <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Certificate">
+                    <span class="input-group-append">
+                      <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                    </span>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                <button class="btn btn-dark">Cancel</button>
+
+        </form>
+
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- End custom js for this page -->
+{% endblock content %}

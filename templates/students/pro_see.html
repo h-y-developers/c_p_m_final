@@ -1,0 +1,302 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extracss %}
+<style>
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css);
+
+  .rating-wrap{
+	max-width: 480px;
+	margin: auto;
+    padding: 2px 15px 25px 0px;
+	text-align: center;
+}
+.center{
+	width: 162px; 
+	margin: auto;
+}
+
+
+.rating-value{	
+	width: 110px;
+	margin: 40px auto 0;
+	padding: 10px 5px;
+	text-align: center;
+	box-shadow: inset 0 0 2px 1px rgba(46,204,113,.2);
+}
+
+.rating{
+	border: none;
+	float: left;
+}
+
+.rating > input{
+	display: none;
+}
+
+.rating > label:before{
+	content: '\f005';
+	font-family: FontAwesome;
+	margin: 5px;
+	font-size: 1rem;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.rating > .half:before{
+	content: '\f089';
+	position: absolute;
+	cursor: pointer;
+}
+
+
+.rating > label{
+	color: rgba(123, 138, 133, 0.479);
+	float: right;
+	cursor: pointer;
+}
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover, 
+.rating:not(:checked) > label:hover ~ label{
+	color: #2ce679;
+}
+
+
+.rating > label:hover ~ input:checked ~ label,
+.rating > input:checked ~ label:hover ~ label{
+	color: #2ddc76;
+}
+
+</style>
+
+{% endblock extracss %}
+
+{% block content %}
+    
+
+
+    <div class="container-scroller">
+      <!-- partial:partials/_sidebar.html -->
+      {% include 'navbar.html' %}
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_navbar.html -->
+       
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+         <form  action="/students/" >   
+         {% comment %} {% csrf_token %} {% endcomment %}
+            <div class="row">
+<!--             
+                 -->
+             <div class="container my-4">
+                
+                    <div class="d-flex flex-row justify-content-between mb-3">
+                      <h4 class="card-title mt-2 text-muted mb-1">The List of Projects</h4>
+                      {% comment %} <button type="submit" class="btn btn-primary btn-fw" >Add Proejcts</button> {% endcomment %}
+                      {% comment %} <select class="text-muted typeahead col-4 mb-1">
+                          <option class="text-muted mb-1">All</option>
+                          <option class="text-muted mb-1">Developing</option>
+                          <option class="text-muted mb-1">Designing</option>
+                          <option class="text-muted mb-1">Workshops</option>
+                          <option class="text-muted mb-1">Non Cultural Events</option>
+                      </select> {% endcomment %}
+                    </div>
+                  
+             </div>    
+             {% for project in projects %}
+              <div class="col-md-4 grid-margin stretch-card" id="pro_{{ project.project_id }}">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex flex-row justify-content-between mb-2">
+                      <h4 class="card-title ">{{ project.project_name }}</h4>
+                      <p class="text-muted">{{ project.student_name }}</p>
+                    </div>
+                    <p class="card-description text-muted" style="height:130px; overflow-y:scroll;"> {{ project.description }}
+                    </p>
+                    <!-- <div class="form-group  rating-wrap">
+                        <input type="hidden" value="{{ project.rating_star }}" name="per_star" id="rate_star_{{ project.project_id }}">
+                        <fieldset class=" rating">
+                          {% if project.rating_star == '5' %}
+                          <input type="radio" id="star5"   class=" rating_{{ project.project_id }}" value="5" checked/><label for="star5" class="full" title="Awesome" ></label>
+                          <input type="radio" id="star4.5"   class=" rating_{{ project.project_id }}" value="4.5"/><label for="star4.5" class="half"></label>
+                          <input type="radio" id="star4"   class=" rating_{{ project.project_id }}" value="4" /><label for="star4" class="full"></label>
+                          <input type="radio" id="star3.5"   class=" rating_{{ project.project_id }}" value="3.5"/><label for="star3.5" class="half"></label>
+                          <input type="radio" id="star3"   class=" rating_{{ project.project_id }}" value="3"/><label for="star3" class="full"></label>
+                          <input type="radio" id="star2.5"   class=" rating_{{ project.project_id }}" value="2.5"/><label for="star2.5" class="half"></label>
+                          <input type="radio" id="star2"   class=" rating_{{ project.project_id }}" value="2" /><label for="star2" class="full"></label>
+                          <input type="radio" id="star1.5"   class=" rating_{{ project.project_id }}" value="1.5" /><label for="star1.5" class="half"></label>
+                          <input type="radio" id="star1"   class=" rating_{{ project.project_id }}" value="1"/><label for="star1" class="full"></label>
+                          <input type="radio" id="star0.5"   class=" rating_{{ project.project_id }}" value="0.5"/><label for="star0.5" class="half"></label>
+                          {% elif project.rating_star == '4.5' %}
+                          <input type="radio" id="star5"   class=" rating_{{ project.project_id }}" value="5" /><label for="star5" class="full" title="Awesome" ></label>
+                          <input type="radio" id="star4.5"   class=" rating_{{ project.project_id }}" value="4.5" checked/><label for="star4.5" class="half"></label>
+                          <input type="radio" id="star4"   class=" rating_{{ project.project_id }}" value="4" /><label for="star4" class="full"></label>
+                          <input type="radio" id="star3.5"   class=" rating_{{ project.project_id }}" value="3.5"/><label for="star3.5" class="half"></label>
+                          <input type="radio" id="star3"   class=" rating_{{ project.project_id }}" value="3"/><label for="star3" class="full"></label>
+                          <input type="radio" id="star2.5"   class=" rating_{{ project.project_id }}" value="2.5"/><label for="star2.5" class="half"></label>
+                          <input type="radio" id="star2"   class=" rating_{{ project.project_id }}" value="2" /><label for="star2" class="full"></label>
+                          <input type="radio" id="star1.5"   class=" rating_{{ project.project_id }}" value="1.5" /><label for="star1.5" class="half"></label>
+                          <input type="radio" id="star1"   class=" rating_{{ project.project_id }}" value="1"/><label for="star1" class="full"></label>
+                          <input type="radio" id="star0.5"   class=" rating_{{ project.project_id }}" value="0.5"/><label for="star0.5" class="half"></label>
+                          {% elif project.rating_star == '4' %}
+                          <input type="radio" id="star5"   class=" rating_{{ project.project_id }}" value="5" /><label for="star5" class="full" title="Awesome" ></label>
+                          <input type="radio" id="star4.5"   class=" rating_{{ project.project_id }}" value="4.5"/><label for="star4.5" class="half"></label>
+                          <input type="radio" id="star4"   class=" rating_{{ project.project_id }}" value="4" checked/><label for="star4" class="full"></label>
+                          <input type="radio" id="star3.5"   class=" rating_{{ project.project_id }}" value="3.5"/><label for="star3.5" class="half"></label>
+                          <input type="radio" id="star3"   class=" rating_{{ project.project_id }}" value="3"/><label for="star3" class="full"></label>
+                          <input type="radio" id="star2.5"   class=" rating_{{ project.project_id }}" value="2.5"/><label for="star2.5" class="half"></label>
+                          <input type="radio" id="star2"   class=" rating_{{ project.project_id }}" value="2" /><label for="star2" class="full"></label>
+                          <input type="radio" id="star1.5"   class=" rating_{{ project.project_id }}" value="1.5" /><label for="star1.5" class="half"></label>
+                          <input type="radio" id="star1"   class=" rating_{{ project.project_id }}" value="1"/><label for="star1" class="full"></label>
+                          <input type="radio" id="star0.5"   class=" rating_{{ project.project_id }}" value="0.5"/><label for="star0.5" class="half"></label>
+                          {% elif project.rating_star == '3.5' %}
+                          <input type="radio" id="star5"   class=" rating_{{ project.project_id }}" value="5" /><label for="star5" class="full" title="Awesome" ></label>
+                          <input type="radio" id="star4.5"   class=" rating_{{ project.project_id }}" value="4.5"/><label for="star4.5" class="half"></label>
+                          <input type="radio" id="star4"   class=" rating_{{ project.project_id }}" value="4" /><label for="star4" class="full"></label>
+                          <input type="radio" id="star3.5"   class=" rating_{{ project.project_id }}" value="3.5" checked/><label for="star3.5" class="half"></label>
+                          <input type="radio" id="star3"   class=" rating_{{ project.project_id }}" value="3"/><label for="star3" class="full"></label>
+                          <input type="radio" id="star2.5"   class=" rating_{{ project.project_id }}" value="2.5"/><label for="star2.5" class="half"></label>
+                          <input type="radio" id="star2"   class=" rating_{{ project.project_id }}" value="2" /><label for="star2" class="full"></label>
+                          <input type="radio" id="star1.5"   class=" rating_{{ project.project_id }}" value="1.5" /><label for="star1.5" class="half"></label>
+                          <input type="radio" id="star1"   class=" rating_{{ project.project_id }}" value="1"/><label for="star1" class="full"></label>
+                          <input type="radio" id="star0.5"   class=" rating_{{ project.project_id }}" value="0.5"/><label for="star0.5" class="half"></label>
+                          {% elif project.rating_star == '3' %}
+                          <input type="radio" id="star5"   class=" rating_{{ project.project_id }}" value="5" /><label for="star5" class="full" title="Awesome" ></label>
+                          <input type="radio" id="star4.5"   class=" rating_{{ project.project_id }}" value="4.5"/><label for="star4.5" class="half"></label>
+                          <input type="radio" id="star4"   class=" rating_{{ project.project_id }}" value="4" /><label for="star4" class="full"></label>
+                          <input type="radio" id="star3.5"   class=" rating_{{ project.project_id }}" value="3.5"/><label for="star3.5" class="half"></label>
+                          <input type="radio" id="star3"   class=" rating_{{ project.project_id }}" value="3" checked/><label for="star3" class="full"></label>
+                          <input type="radio" id="star2.5"   class=" rating_{{ project.project_id }}" value="2.5"/><label for="star2.5" class="half"></label>
+                          <input type="radio" id="star2"   class=" rating_{{ project.project_id }}" value="2" /><label for="star2" class="full"></label>
+                          <input type="radio" id="star1.5"   class=" rating_{{ project.project_id }}" value="1.5" /><label for="star1.5" class="half"></label>
+                          <input type="radio" id="star1"   class=" rating_{{ project.project_id }}" value="1"/><label for="star1" class="full"></label>
+                          <input type="radio" id="star0.5"   class=" rating_{{ project.project_id }}" value="0.5"/><label for="star0.5" class="half"></label>
+                          {% elif project.rating_star == '2.5' %}
+                          <input type="radio" id="star5"   class=" rating_{{ project.project_id }}" value="5" /><label for="star5" class="full" title="Awesome" ></label>
+                          <input type="radio" id="star4.5"   class=" rating_{{ project.project_id }}" value="4.5"/><label for="star4.5" class="half"></label>
+                          <input type="radio" id="star4"   class=" rating_{{ project.project_id }}" value="4" /><label for="star4" class="full"></label>
+                          <input type="radio" id="star3.5"   class=" rating_{{ project.project_id }}" value="3.5"/><label for="star3.5" class="half"></label>
+                          <input type="radio" id="star3"   class=" rating_{{ project.project_id }}" value="3"/><label for="star3" class="full"></label>
+                          <input type="radio" id="star2.5"   class=" rating_{{ project.project_id }}" value="2.5" checked/><label for="star2.5" class="half"></label>
+                          <input type="radio" id="star2"   class=" rating_{{ project.project_id }}" value="2" /><label for="star2" class="full"></label>
+                          <input type="radio" id="star1.5"   class=" rating_{{ project.project_id }}" value="1.5" /><label for="star1.5" class="half"></label>
+                          <input type="radio" id="star1"   class=" rating_{{ project.project_id }}" value="1"/><label for="star1" class="full"></label>
+                          <input type="radio" id="star0.5"   class=" rating_{{ project.project_id }}" value="0.5"/><label for="star0.5" class="half"></label>
+                          {% elif project.rating_star == '2' %}
+                          <input type="radio" id="star5"   class=" rating_{{ project.project_id }}" value="5" /><label for="star5" class="full" title="Awesome" ></label>
+                          <input type="radio" id="star4.5"   class=" rating_{{ project.project_id }}" value="4.5"/><label for="star4.5" class="half"></label>
+                          <input type="radio" id="star4"   class=" rating_{{ project.project_id }}" value="4" /><label for="star4" class="full"></label>
+                          <input type="radio" id="star3.5"   class=" rating_{{ project.project_id }}" value="3.5"/><label for="star3.5" class="half"></label>
+                          <input type="radio" id="star3"   class=" rating_{{ project.project_id }}" value="3"/><label for="star3" class="full"></label>
+                          <input type="radio" id="star2.5"   class=" rating_{{ project.project_id }}" value="2.5"/><label for="star2.5" class="half"></label>
+                          <input type="radio" id="star2"   class=" rating_{{ project.project_id }}" value="2" checked/><label for="star2" class="full"></label>
+                          <input type="radio" id="star1.5"   class=" rating_{{ project.project_id }}" value="1.5" /><label for="star1.5" class="half"></label>
+                          <input type="radio" id="star1"   class=" rating_{{ project.project_id }}" value="1"/><label for="star1" class="full"></label>
+                          <input type="radio" id="star0.5"   class=" rating_{{ project.project_id }}" value="0.5"/><label for="star0.5" class="half"></label>
+                          {% elif project.rating_star == '1.5' %}
+                          <input type="radio" id="star5"   class=" rating_{{ project.project_id }}" value="5" /><label for="star5" class="full" title="Awesome" ></label>
+                          <input type="radio" id="star4.5"   class=" rating_{{ project.project_id }}" value="4.5"/><label for="star4.5" class="half"></label>
+                          <input type="radio" id="star4"   class=" rating_{{ project.project_id }}" value="4" /><label for="star4" class="full"></label>
+                          <input type="radio" id="star3.5"   class=" rating_{{ project.project_id }}" value="3.5"/><label for="star3.5" class="half"></label>
+                          <input type="radio" id="star3"   class=" rating_{{ project.project_id }}" value="3"/><label for="star3" class="full"></label>
+                          <input type="radio" id="star2.5"   class=" rating_{{ project.project_id }}" value="2.5"/><label for="star2.5" class="half"></label>
+                          <input type="radio" id="star2"   class=" rating_{{ project.project_id }}" value="2" /><label for="star2" class="full"></label>
+                          <input type="radio" id="star1.5"   class=" rating_{{ project.project_id }}" value="1.5" checked/><label for="star1.5" class="half"></label>
+                          <input type="radio" id="star1"   class=" rating_{{ project.project_id }}" value="1"/><label for="star1" class="full"></label>
+                          <input type="radio" id="star0.5"   class=" rating_{{ project.project_id }}" value="0.5"/><label for="star0.5" class="half"></label>
+                          {% elif project.rating_star == '1' %}
+                          <input type="radio" id="star5"   class=" rating_{{ project.project_id }}" value="5" /><label for="star5" class="full" title="Awesome" ></label>
+                          <input type="radio" id="star4.5"   class=" rating_{{ project.project_id }}" value="4.5"/><label for="star4.5" class="half"></label>
+                          <input type="radio" id="star4"   class=" rating_{{ project.project_id }}" value="4" /><label for="star4" class="full"></label>
+                          <input type="radio" id="star3.5"   class=" rating_{{ project.project_id }}" value="3.5"/><label for="star3.5" class="half"></label>
+                          <input type="radio" id="star3"   class=" rating_{{ project.project_id }}" value="3"/><label for="star3" class="full"></label>
+                          <input type="radio" id="star2.5"   class=" rating_{{ project.project_id }}" value="2.5"/><label for="star2.5" class="half"></label>
+                          <input type="radio" id="star2"   class=" rating_{{ project.project_id }}" value="2" /><label for="star2" class="full"></label>
+                          <input type="radio" id="star1.5"   class=" rating_{{ project.project_id }}" value="1.5" /><label for="star1.5" class="half"></label>
+                          <input type="radio" id="star1"   class=" rating_{{ project.project_id }}" value="1" checked/><label for="star1" class="full"></label>
+                          <input type="radio" id="star0.5"   class=" rating_{{ project.project_id }}" value="0.5"/><label for="star0.5" class="half"></label>
+                          {% elif project.rating_star == '0.5' %}
+                          <input type="radio" id="star5"   class=" rating_{{ project.project_id }}" value="5" /><label for="star5" class="full" title="Awesome" ></label>
+                          <input type="radio" id="star4.5"   class=" rating_{{ project.project_id }}" value="4.5"/><label for="star4.5" class="half"></label>
+                          <input type="radio" id="star4"   class=" rating_{{ project.project_id }}" value="4" /><label for="star4" class="full"></label>
+                          <input type="radio" id="star3.5"   class=" rating_{{ project.project_id }}" value="3.5"/><label for="star3.5" class="half"></label>
+                          <input type="radio" id="star3"   class=" rating_{{ project.project_id }}" value="3"/><label for="star3" class="full"></label>
+                          <input type="radio" id="star2.5"   class=" rating_{{ project.project_id }}" value="2.5"/><label for="star2.5" class="half"></label>
+                          <input type="radio" id="star2"   class=" rating_{{ project.project_id }}" value="2" /><label for="star2" class="full"></label>
+                          <input type="radio" id="star1.5"   class=" rating_{{ project.project_id }}" value="1.5" /><label for="star1.5" class="half"></label>
+                          <input type="radio" id="star1"   class=" rating_{{ project.project_id }}" value="1"/><label for="star1" class="full"></label>
+                          <input type="radio" id="star0.5"   class=" rating_{{ project.project_id }}" value="0.5" checked/><label for="star0.5" class="half"></label>
+                          {% else %}
+                          <input type="radio" id="star5"   class=" rating_{{ project.project_id }}" value="5" /><label for="star5" class="full" title="Awesome" ></label>
+                          <input type="radio" id="star4.5"   class=" rating_{{ project.project_id }}" value="4.5"/><label for="star4.5" class="half"></label>
+                          <input type="radio" id="star4"   class=" rating_{{ project.project_id }}" value="4" /><label for="star4" class="full"></label>
+                          <input type="radio" id="star3.5"   class=" rating_{{ project.project_id }}" value="3.5"/><label for="star3.5" class="half"></label>
+                          <input type="radio" id="star3"   class=" rating_{{ project.project_id }}" value="3"/><label for="star3" class="full"></label>
+                          <input type="radio" id="star2.5"   class=" rating_{{ project.project_id }}" value="2.5"/><label for="star2.5" class="half"></label>
+                          <input type="radio" id="star2"   class=" rating_{{ project.project_id }}" value="2" /><label for="star2" class="full"></label>
+                          <input type="radio" id="star1.5"   class=" rating_{{ project.project_id }}" value="1.5" /><label for="star1.5" class="half"></label>
+                          <input type="radio" id="star1"   class=" rating_{{ project.project_id }}" value="1"/><label for="star1" class="full"></label>
+                          <input type="radio" id="star0.5"   class=" rating_{{ project.project_id }}" value="0.5"/><label for="star0.5" class="half"></label>
+                          {% endif %}
+
+
+                        </fieldset>
+                      
+                        
+                      
+                    </div> -->
+                    <form method="POST" action="/likes">
+                      {% csrf_token %}
+                      <input type="hidden" name="pname"  value="{{project.project_name}}">
+                      {% if user not in project.likes.all %}
+                           <button type="submit" class="btn btn-outline-secondary btn-rounded btn-icon">
+                             <i class="mdi mdi-heart-outline text-danger"></i>
+                           </button>
+                      {% else %}
+                      <button type="submit" class="btn btn-outline-secondary btn-rounded btn-icon">
+                             <i class="mdi mdi-heart-outline text-warning"></i>
+                           </button>
+                      {% endif %}
+                           <strong>{{project.likes.all.count}} likes</strong>
+                       </form>
+              
+                    <a class="btn btn-primary btn-lg btn-block mt-4" href="{{ project.url }}">
+                        <i class="mdi mdi-arrow-right"></i> Go to Project </a>
+                  </div>
+                  </div>
+                  </div>
+                   
+             {% endfor %}     
+              
+               
+             
+              </div>
+              </form>
+              
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+  </div>
+
+
+    {% endblock content %}
+
+
+  {% block extrajs %}
+  <script>
+    // $(document).ready(function(){
+    
+    
+    //   t.each(function(){
+    //     var self = $(this);
+    //     if(self.val()==r){
+    //       self.prop('checked',true)
+    //     }
+    //   })
+    // })
+  </script>
+  {% endblock extrajs %}
