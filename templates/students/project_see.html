@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% block title %}
+  <title>{{ request.user.username }} | Projects</title>
+{% endblock title %}
+{% load static %}
+{% block extracss %}
+<!-- <style>
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css);
+
+  .rating-wrap{
+	max-width: 480px;
+	margin: auto;
+    padding: 2px 15px 25px 0px;
+	text-align: center;
+}
+.center{
+	width: 162px; 
+	margin: auto;
+}
+
+
+.rating-value{	
+	width: 110px;
+	margin: 40px auto 0;
+	padding: 10px 5px;
+	text-align: center;
+	box-shadow: inset 0 0 2px 1px rgba(46,204,113,.2);
+}
+
+.rating{
+	border: none;
+	float: left;
+}
+
+.rating > input{
+	display: none;
+}
+
+.rating > label:before{
+	content: '\f005';
+	font-family: FontAwesome;
+	margin: 5px;
+	font-size: 1rem;
+	display: inline-block;
+	cursor: pointer;
+}
+
+.rating > .half:before{
+	content: '\f089';
+	position: absolute;
+	cursor: pointer;
+}
+
+
+.rating > label{
+	color: rgba(123, 138, 133, 0.479);
+	float: right;
+	cursor: pointer;
+}
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover, 
+.rating:not(:checked) > label:hover ~ label{
+	color: #2ce679;
+}
+
+
+.rating > label:hover ~ input:checked ~ label,
+.rating > input:checked ~ label:hover ~ label{
+	color: #2ddc76;
+}
+
+</style> -->
+
+<style>
+  .unlike, .like{
+    font-size: 1.3rem;
+  }
+ 
+</style>
+
+{% endblock extracss %}
+
+{% block content %}
+    
+
+
+    <div class="container-scroller">
+      <!-- partial:partials/_sidebar.html -->
+      {% include 'navbar.html' %}
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_navbar.html -->
+       
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+        
+    
+            <div class="row">
+<!--             
+                 -->
+             <div class="container my-4">
+                
+                    <div class="d-flex flex-row justify-content-between mb-3">
+                      <h4 class="card-title mt-2 text-muted mb-1">The List of Projects</h4>
+                      {% comment %} <button type="submit" class="btn btn-primary btn-fw" >Add Proejct</button> {% endcomment %}
+                      {% comment %} <select class="text-muted typeahead col-4 mb-1">
+                          <option class="text-muted mb-1">All</option>
+                          <option class="text-muted mb-1">Developing</option>
+                          <option class="text-muted mb-1">Designing</option>
+                          <option class="text-muted mb-1">Workshops</option>
+                          <option class="text-muted mb-1">Non Cultural Events</option>
+                      </select> {% endcomment %}
+                    </div>
+                  
+             </div>    
+             {% for project in projects %}
+              <div class="col-md-4 grid-margin stretch-card" id="pro_{{ project.project_id }}">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex flex-row justify-content-between mb-2">
+                      <h4 class="card-title ">{{ project.project_name }}</h4>
+                      <p class="text-muted">{{ project.student_name }}</p>
+                    </div>
+                    <p class="card-description text-muted" style="height:130px; overflow-y:scroll;"> {{ project.description }}
+                    </p>
+
+                     <form method="POST" action="/likes">
+                     {% csrf_token %}
+                     <input type="hidden" name="pname"  value="{{project.project_name}}">
+                     {% if user not in project.likes.all %}
+                          <button type="submit" class="btn btn-icon">
+                            <i class="mdi mdi-heart-outline text-danger unlike" ></i>
+                          </button>
+                     {% else %}
+                     <button type="submit" class="btn btn-icon">
+                            <i class="mdi mdi-heart text-warning like" ></i>
+                      </button>
+                     {% endif %}
+                          <strong>{{project.likes.all.count}} &nbsp;likes</strong>
+                      </form>
+                     
+              
+                    <a class="btn btn-primary btn-lg btn-block mt-4" href="{{ project.url }}">
+                        <i class="mdi mdi-arrow-right"></i> Go to Project </a>
+                  </div>
+                  </div>
+                  </div>
+                   
+             {% endfor %}     
+              
+               
+             
+              </div>
+              
+              
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+  </div>
+
+
+    {% endblock content %}
+
+{% block extrajs %}
+
+
+{% endblock extrajs %}
+ 

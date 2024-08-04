@@ -1,0 +1,333 @@
+{% extends 'base.html' %}
+{% block title %}
+  <title>{{ request.user.username }} | Profile</title>
+{% endblock title %}
+{% load static %}
+{% block content %}
+
+
+<div class="container-scroller">
+  {% include 'navbar_company.html' %}
+  <div class="container-fluid page-body-wrapper">
+    <!-- partial:partials/_navbar.html -->
+
+
+
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <form method="POST" action="/company/profile/{{ request.user.slug }}/update" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="col-12 grid-margin">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title text-muted">Company Details Form</h4>
+                {% for message in messages %}
+                <div class="form-group mt-4 mb-4 {{ message.tags }} alert-dismissible fade show" role="alert">
+                  {{ message }}
+
+                </div>
+                {% endfor %}
+                <div class="form-sample">
+                  <br>
+                  <div class="card-description mt-6 mb-4 seperator"></div>
+                  <center><span class="detail_tag text-center">Company info</span></center>
+                  <br>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Company Name</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="cname" value="{{ company.company_name }}" class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Year Of Found</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="year_of_found" value="{{ company.year_found }}"
+                            class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Email</label>
+                        <div class="col-sm-8">
+                          <input type="email" name="email" value="{{ company.email }}" class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Mobile No.</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="mobile" class="form-control" value="{{ company.mobile }}" />
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class=" mt-2 row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Work Field</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="work_field" value="{{ company.field_name }}" class="form-control"
+                            placeholder="Ex. Cloud Computing, SRE" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">No Of Employees</label>
+                        <div class="col-sm-8">
+                          <input type="number" name="no_of_emp" value="{{ company.no_of_employee }}"
+                            class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <br><br>
+                  <div class="card-description  mb-4 seperator"></div>
+                  <center><span class="detail_tag text-center">Company Description</span></center>
+                  <br>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group row">
+                        <div class="col" style="margin-right:3vw;">
+                          <textarea class="form-control" id="instrcution" name="description"
+                            placeholder="Job Description...." rows="6">{{ company.description }}</textarea>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <br><br>
+                  <div class="card-description  mb-4 seperator"></div>
+                  <center><span class="detail_tag text-center">Address info</span></center>
+                  <br>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Address</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="address" value="{{ company.address }}" class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">State</label>
+                        <div class="col-sm-8">
+                          <input type="text" value="{{ company.state }}" name="state" class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mt-2">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">City</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="city" value="{{ company.city }}" class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Country</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="country" value="{{ company.country }}" class="form-control" />
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <br><br>
+                  <div class="card-description  mb-4 seperator"></div>
+                  <center><span class="detail_tag text-center">Social info</span></center>
+                  <br>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+
+                        <label class="col-sm-3 col-form-label">Website Link</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="website" value="{{ company.website }}" class="form-control"
+                            placeholder="Website URL" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group row">
+  
+                        <label class="col-sm-3 col-form-label">Facebook Profile</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="fb_link" value="{{ company.fb_profile }}" class="form-control"
+                            placeholder="FB Profile Link" style="padding-right:40px;" />
+                            {% if student.fb_profile == '' %}
+                            <a href="https://facebook.com" class="" target="_blank" style="position:absolute; top:0;  right:20px; z-index:2; top:7px; color:grey;"><i class="mdi mdi-facebook"></i></a>
+                            {% else %}
+                            <a href="{{ company.fb_profile }}" class="" target="_blank" style="position:absolute; top:0;  right:20px; z-index:2; top:7px; color:grey;"><i class="mdi mdi-facebook"></i></a> 
+  
+                            {% endif %}  
+                        </div>
+                      </div>
+                    </div>
+  
+                  </div>
+  
+  
+  
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+  
+                        <label class="col-sm-3 col-form-label">LinkedIn Profile</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="linkedin_link" value="{{ company.linkedin_profile }}"
+                            class="form-control" placeholder="Instagram Profile Link"  style="padding-right:40px;"/>
+                            {% if student.linkedin_profile == '' %}
+                            <a href="https://linkedin.com" class="" target="_blank" style="position:absolute; top:0; right:20px; z-index:2; top:7px; color:grey;"><i class="mdi mdi-linkedin"></i></a>
+                            {% else %}
+                            <a href="{{ company.linkedin_profile }}" class="" target="_blank" style="position:absolute; top:0; right:20px; z-index:2; top:7px; color:grey;"><i class="mdi mdi-linkedin"></i></a> 
+  
+                            {% endif %}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group row">
+  
+                        <label class="col-sm-3 col-form-label">Instagram Profile</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="insta_link" value="{{ company.insta_profile }}" class="form-control"
+                            placeholder="Instagram Profile Link"  style="padding-right:40px;"/>
+                            {% if student.insta_profile == '' %}
+                            <a href="https://instagram.com" class="" target="_blank" style="position:absolute; top:0; right:20px; z-index:2; top:7px; color:grey;"><i class="mdi mdi-instagram"></i></a>
+                            {% else %}
+                            <a href="{{ company.insta_profile }}" class="" target="_blank" style="position:absolute; top:0; right:20px; z-index:2; top:7px; color:grey;"><i class="mdi mdi-instagram"></i></a> 
+  
+                            {% endif %}
+                            
+                        </div>
+                      </div>
+                    </div>
+  
+                  </div>
+
+
+              </div>
+
+              <!-- skills -->
+              <br>
+              {% comment %} <div class="card-description  mb-4 seperator"></div>
+              <center><span class="detail_tag text-center">Skills info</span></center>
+              <br>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Skills</label>
+                    <div class="col-sm-8">
+                      <select name="skills" class="js-example-basic-multiple" multiple="multiple" style="width:100%">
+                        <option value="wd">Web Development</option>
+                        <option value="ad">App Development</option>
+                        <option value="cd">Cloud Computing</option>
+                        <option value="excel">Excel</option>
+                        <option value="wp">Wordpress</option>
+                        <option value="react">React</option>
+                        <option value="dj">Django</option>
+                        <option value="bc">Block Chain</option>
+                        <option value="dm">Data Mining</option>
+                        <option value="py">Python</option>
+                        <option value="c">C/C++</option>
+                        <option value="j">Java</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Area Of Interest</label>
+                    <div class="col-sm-8">
+                      <select name="interest" class="js-example-basic-multiple" multiple="multiple" style="width:100%">
+                        <option value="wd">Web Development</option>
+                        <option value="ad">App Development</option>
+                        <option value="cd">Cloud Computing</option>
+                        <option value="excel">Excel</option>
+                        <option value="wp">Wordpress</option>
+                        <option value="react">React</option>
+                        <option value="dj">Django</option>
+                        <option value="bc">Block Chain</option>
+                        <option value="dm">Data Mining</option>
+                        <option value="py">Python</option>
+                        <option value="c">C/C++</option>
+                        <option value="j">Java</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {% endcomment %}
+
+
+              <center>
+                <div class="row">
+                  <div class="col-md-12 mt-4 mb-4 text-center">
+
+                    <button type="submit" class="btn btn-primary btn-icon-text mr-4">
+                      <i class="mdi mdi-file-check btn-icon-prepend"></i> Submit </button>
+
+
+                    <button type="button" class="btn btn-danger btn-icon-text">
+                      <i class="mdi mdi-reload btn-icon-prepend"></i> Reset </button>
+                  </div>
+
+                </div>
+
+
+
+            </div>
+          </div>
+      </div>
+      </form>
+
+      <!-- partial:partials/_footer.html -->
+
+      <!-- partial -->
+    </div>
+    <!-- main-panel ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
+</div>
+</div>
+<!-- container-scroller -->
+<!-- </div>
+</div>
+</div>
+</div> -->
+
+<!-- End custom js for this page -->
+{% endblock content %}
+
+<!-- {% block extrajs %}
+<script>
+
+  $(document).ready(function(){
+    $('.hsc_res').on('change',function(){
+      $('#hscimg').src= window.URL.createObjectURL(this.files[0])
+    })
+  })
+</script>
+
+{% endblock extrajs %} -->

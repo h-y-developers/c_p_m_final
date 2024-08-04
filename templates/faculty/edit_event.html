@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}
+  <title>{{ event.event_name }} | Edit Event</title>
+{% endblock title %}
+{% block content %}
+
+<div class="container-scroller">
+  {% include 'navbar_f.html' %}
+  <div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <form method="POST" action="/faculty/edit_event/{{ event.slug }}" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title text-muted mb-4">Edit Event Details</h4>
+                <!-- <p class="card-description">Show Case Your Talent </p> -->
+                <br>
+                <div class="form-group mb-4">
+                    <label for="" class="mb-2">Name of the event</label>
+                    <input type="text" class="form-control" id="title" name="event" value="{{ event.event_name }}" placeholder="Event Name">
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="">Instructions</label>
+                    <textarea class="form-control" id="instrcution" name="instructions"  placeholder="Instrusctions...."
+                      rows="6">{{ event.instructions }}</textarea>
+                  </div>
+                  <div class="form-group mb-4 ">
+                    <label for="">Date Of Event</label>
+                    <input type="date" value="{{ event.event_date|date:'Y-m-d' }}" name="doe" class="form-control col-md-6"
+                      placeholder="" />
+                  </div>
+
+                  <div class="form-group mb-4">
+                    <label for="">URL</label>
+                    <input type="text" value="{{ event.url }}" class="form-control" id="instrcution" name="url"
+                      placeholder="Url of form or Website">
+                  </div>
+
+                  <!-- <div class="form-group mb-4">
+                    <label class="mb-3">Event Poster</label>
+
+                    <input type="file" name="poster" value="{{ event.file|stringformat:'i' }}" class="file-upload-default"   onchange="document.getElementById('profile_pic').src= window.URL.createObjectURL(this.files[0])">
+                    
+                    <div class="form-group row">
+                        <img src="/media/{{ event.file }}" class="mr-4" id="profile_pic" style="height: 10rem; width:15rem; border-radius: 5px">
+                        <div class="col-sm-8" style="position: relative; top: 3px;">
+                            <button class="file-upload-browse btn btn-success  btn-icon-text"  type="button" style="overflow: hidden;">
+                                <i class="mdi mdi-pencil btn-icon-prepend"></i> Edit Poster
+                              </button>
+                        </div>
+                      </div>
+                  </div> -->
+                  <div class="form-group row">
+                    <div class="col-md-12 mt-4 text-center">
+                      
+                      <button type="submit" class="btn btn-primary btn-icon-text mr-4">
+                        <i class="mdi mdi-file-check btn-icon-prepend"></i> Submit </button>
+      
+                      
+                       
+                        </div>
+                </div>
+                
+                
+                
+
+        </form>
+
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- End custom js for this page -->
+{% endblock content %}

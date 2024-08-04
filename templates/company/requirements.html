@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block title %}
+  <title>{{ request.user.username }} | Add Requirements</title>
+{% endblock title %}
+{% block content %}
+<div class="container-scroller">
+  <!-- partial:partials/_sidebar.html -->
+  {% include 'navbar_company.html' %}
+  <!-- partial -->
+  <div class="container-fluid page-body-wrapper">
+    <!-- partial:partials/_navbar.html -->
+
+    <!-- main content -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+        <form method="POST" action="/company/requirements" enctype="multipart/form-data">
+
+          {% csrf_token %}
+          
+
+          <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-row justify-content-between mb-3">
+                    <h4 class="card-title text-muted mt-2 mb-4">Requirements</h4>
+                    {% for message in messages %}
+                    <div class=" {{ message.tags }} alert-dismissible fade show" role="alert">
+                      {{ message }}
+                      
+                    </div>
+                    {% endfor %}
+                  </div>
+
+
+                  <div class="form-group mb-4">
+                    <label for="" class="mb-3">Company Name</label>
+                    <input type="text" class="form-control" id="title" name="name" placeholder="Company Name">
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="" class="mb-3">Job Description</label>
+                    <textarea class="form-control" id="instrcution" name="desc" placeholder="Job Description...."
+                      rows="6"></textarea>
+                  </div>
+
+
+                  <div class="form-group mb-4">
+                    <label for="" class="mb-3">Number of Vacancies</label>
+                    <input type="text" class="form-control" id="title" name="vacancies"
+                      placeholder="Number of Vacancies">
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="" class="mb-3">Application Form URl</label>
+                    <input type="text" class="form-control" id="instrcution" name="url"
+                      placeholder="Url of form or Website">
+                  </div>
+
+                  <div class="form-group mb-4">
+                    <label class="mb-3">Requirements File or Image</label>
+                    <input type="file" name="file" class="file-upload-default">
+                    <div class="input-group col-xs-12">
+                      <input type="text" class="form-control file-upload-info" disabled
+                        placeholder="Upload PDF or PNG file">
+                      <span class="input-group-append">
+                        <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                      </span>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-group row">
+                  <div class="col-md-12 mt-3 mb-4 text-center">
+      
+                    <button type="submit" class="btn btn-primary btn-icon-text mr-4">
+                      <i class="mdi mdi-file-check btn-icon-prepend"></i> Submit </button>
+      
+                    <button type="cancel" class="btn btn-danger btn-icon-text mr-4">
+                      <i class="mdi mdi-cancel btn-icon-prepend"></i> Cancel </button>
+      
+      
+      
+                  </div>
+              </div>
+              
+    
+              </div>
+            </div>
+          </div>
+          
+
+          
+
+        </form>
+      </div>
+    </div>
+
+    {% endblock content %}

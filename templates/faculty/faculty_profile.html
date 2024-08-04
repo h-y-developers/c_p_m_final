@@ -1,0 +1,574 @@
+{% extends 'base.html' %}
+{% block title %}
+  <title>{{ request.user.username }} | Profile</title>
+{% endblock title %}
+{% block content %}
+
+{% comment %} {% extends 'base.html' %}
+{% block content %}
+
+    <div class="container-scroller">
+      <!-- partial:partials/_sidebar.html -->
+      {% include 'navbar_f.html' %}
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_navbar.html -->
+       
+        
+    
+<div class="main-panel">
+<div class="content-wrapper">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title text-muted mb-4">Faculty Details </h4>
+          <form class="form-sample">
+            <br>
+            <div class="card-description mt-6 mb-4 seperator"></div>
+            <center><span class="detail_tag text-center">Personal info</span></center>
+            <br>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">First Name</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Last Name</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Gender</label>
+                  <div class="col-sm-8">
+                    <select class="form-control">
+                      <option>Male</option>
+                      <option>Female</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Date of Birth</label>
+                  <div class="col-sm-8">
+                    <input type="text" onfocus="(this.type='date')" class="form-control" placeholder="dd/mm/yyyy" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Email</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="Email ID" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Mobile No.</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="Mobile No." />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Role</label>
+                  <div class="col-sm-4">
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="membershipRadios" id="student" value="" > Student </label>
+                    </div>
+                  </div>
+                  <div class="col-sm-5">
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="membershipRadios" id="staff" value="option2"> Staff </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Department</label>
+                  <div class="col-sm-8">
+                    <select class="form-control">
+                      <option>Mechanical</option>
+                      <option>EC</option>
+                      <option>Civil</option>
+                      <option>IT</option>
+                      <option>EL</option>
+                      <option>EE</option>
+                      <option>Production</option>
+                      
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br><br>
+             <div class="card-description  mb-4 seperator"></div>
+            <center><span class="detail_tag text-center">College info</span></center>
+            <br>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Faculty ID No.</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="ID" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Designation</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="Designation"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <br><br>
+             <div class="card-description  mb-4 seperator"></div>
+            <center><span class="detail_tag text-center">Address info</span></center>
+            <br>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Permanent Address</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">State</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Resident Address</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Postcode</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">City</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Country</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="ex. India" />
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+            <br><br>
+             <div class="card-description  mb-4 seperator"></div>
+            <center><span class="detail_tag text-center">Educational info</span></center>
+            <br>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">B.E college name</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="ex. IIT" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">File upload</label>
+                  <div class="col-sm-8">
+                    <input type="file" name="img[]" class="file-upload-default">
+                        <div class="input-group col-xs-12">
+                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Degree">
+                          <span class="input-group-append">
+                            <button type="button" class="btn btn-success btn-icon-text">
+                              <i class="mdi mdi-upload btn-icon-prepend"></i> Upload </button>
+                           
+                          </span>
+                        </div>
+                  </div>
+                </div>
+              </div>
+              
+              
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">M.E college name</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="ex. IIT" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">File upload</label>
+                  <div class="col-sm-8">
+                    <input type="file" name="img[]" class="file-upload-default">
+                        <div class="input-group col-xs-12">
+                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Degree">
+                          <span class="input-group-append">
+                            <button type="button" class="btn btn-success btn-icon-text">
+                              <i class="mdi mdi-upload btn-icon-prepend"></i> Upload </button>
+                           
+                          </span>
+                        </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 mt-4 text-center">
+                
+                <button type="button" class="btn btn-primary btn-icon-text mr-4">
+                  <i class="mdi mdi-file-check btn-icon-prepend"></i> Submit </button>
+               
+                
+                  <button type="button" class="btn btn-danger btn-icon-text">
+                    <i class="mdi mdi-reload btn-icon-prepend"></i> Reset </button>
+                  </div>
+            
+            </div>
+                    
+              
+            
+          </form>
+        </div>
+      </div>
+    </div>
+
+</div>
+</div>
+
+
+ 
+  <!-- partial -->
+</div>
+<!-- main-panel ends -->
+</div>
+<!-- page-body-wrapper ends -->
+</div>
+{% endblock content %} {% endcomment %}
+
+
+
+    <div class="container-scroller">
+      <!-- partial:partials/_sidebar.html -->
+      {% include 'navbar_f.html' %}
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_navbar.html -->
+       
+        
+    
+<div class="main-panel">
+<div class="content-wrapper">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Faculty Details </h4>
+          <form  method="POST" action="/faculty/profile"class="form-sample" enctype="multipart/form-data">
+          {% csrf_token %}
+            <br>
+            <div class="card-description mt-6 mb-4 seperator"></div>
+            <center><span class="detail_tag text-center">Personal info</span></center>
+            <br>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">First Name</label>
+                  <div class="col-sm-8">
+                    <input type="text" name="fname" class="form-control" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Last Name</label>
+                  <div class="col-sm-8">
+                    <input type="text" name="lname" class="form-control" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Gender</label>
+                  <div class="col-sm-8">
+                    <select name="gender" class="form-control">
+                      <option>Male</option>
+                      <option>Female</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Date of Birth</label>
+                  <div class="col-sm-8">
+                    <input type="text" name="dob" onfocus="(this.type='date')" class="form-control" placeholder="dd/mm/yyyy" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Email</label>
+                  <div class="col-sm-8">
+                    <input type="text"  name="email"class="form-control" placeholder="Email ID" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Mobile No.</label>
+                  <div class="col-sm-8">
+                    <input type="text" name="mobile" class="form-control" placeholder="Mobile No." />
+                  </div>
+                </div>
+              </div>
+              {% comment %} <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Role</label>
+                  <div class="col-sm-4">
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="membershipRadios" id="student" value="" > Student </label>
+                    </div>
+                  </div>
+                  <div class="col-sm-5">
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="membershipRadios" id="staff" value="option2"> Staff </label>
+                    </div>
+                  </div>
+                </div>
+              </div> {% endcomment %}
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Department</label>
+                  <div class="col-sm-8">
+                    <select name="dept" class="form-control">
+                      <option>Mechanical</option>
+                      <option>EC</option>
+                      <option>Civil</option>
+                      <option>IT</option>
+                      <option>EL</option>
+                      <option>EE</option>
+                      <option>Production</option>
+                      
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br><br>
+             <div class="card-description  mb-4 seperator"></div>
+            <center><span class="detail_tag text-center">College info</span></center>
+            <br>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Faculty ID No.</label>
+                  <div class="col-sm-8">
+                    <input type="text"  name="id_no" class="form-control" placeholder="ID" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Designation</label>
+                  <div class="col-sm-8">
+                    <input type="text" name="desg" class="form-control" placeholder="Designation"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <br><br>
+             <div class="card-description  mb-4 seperator"></div>
+            <center><span class="detail_tag text-center">Address info</span></center>
+            <br>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Permanent Address</label>
+                  <div class="col-sm-8">
+                    <input type="text" name="permanent_address" class="form-control" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">State</label>
+                  <div class="col-sm-8">
+                    <input type="text" name="state" class="form-control" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Resident Address</label>
+                  <div class="col-sm-8">
+                    <input type="text" name="resident_address" class="form-control" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Postcode</label>
+                  <div class="col-sm-8">
+                    <input type="text" name="pincode" class="form-control" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">City</label>
+                  <div class="col-sm-8">
+                    <input type="text" name="city" class="form-control" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">Country</label>
+                  <div class="col-sm-8">
+                    <input type="text" name="country" class="form-control" placeholder="ex. India" />
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+            <br><br>
+             <div class="card-description  mb-4 seperator"></div>
+            <center><span class="detail_tag text-center">Educational info</span></center>
+            <br>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">B.E college name</label>
+                  <div class="col-sm-8">
+                    <input type="text" name="B_E_college_name" class="form-control" placeholder="ex. IIT" />
+                  </div>
+                </div>
+              </div>
+               <div class="col-md-6">
+                <div class="form-group row">
+              <label></label>
+              
+              <input type="file" name="B_E_college_result" class="file-upload-default">
+              <div class="input-group col-xs-12">
+              <input type="text" class="form-control file-upload-info" disabled placeholder="Upload B_E Result">
+              <span class="input-group-append">
+                <button class="file-upload-browse btn btn-success" type="button">Upload</button>
+              </span>
+            </div>
+          </div>
+              
+               </div>
+        </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label">M.E college name</label>
+                  <div class="col-sm-8">
+                    <input type="text"  name="M_E_college_name"class="form-control" placeholder="ex. IIT" />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+              <label></label>
+              
+              <input type="file" name="M_E_college_result" class="file-upload-default">
+              <div class="input-group col-xs-12">
+              <input type="text" class="form-control file-upload-info" disabled placeholder="Upload M_E Result">
+              <span class="input-group-append">
+                <button class="file-upload-browse btn btn-success" type="button">Upload</button>
+              </span>
+            </div>
+          </div>
+                 
+           </div>
+              </div>
+            
+            <div class="row">
+              <div class="col-md-12 mt-4 text-center">
+                
+                <button type="submit" class="btn btn-primary btn-icon-text mr-4">
+                  <i class="mdi mdi-file-check btn-icon-prepend"></i> Submit </button>
+               
+                
+                  <button type="cancel" class="btn btn-danger btn-icon-text">
+                    <i class="mdi mdi-reload btn-icon-prepend"></i> Reset </button>
+                  </div>
+            
+            </div>
+                    
+              
+            
+          </form>
+        </div>
+      </div>
+    </div>
+
+</div>
+</div>
+
+
+ 
+  <!-- partial -->
+</div>
+<!-- main-panel ends -->
+</div>
+<!-- page-body-wrapper ends -->
+</div>
+{% endblock content %}

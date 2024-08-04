@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Add Company</title>
+{% endblock title %}
+{% block content %}
+
+    <div class="container-scroller">
+      <!-- partial:partials/_sidebar.html -->
+      {% include 'navbar_a.html' %}
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_navbar.html -->
+        
+        <!-- main content -->
+        <div class="main-panel">
+        <div class="content-wrapper">
+        <div class="content">
+            <h4><b><center>BVM College of Engineering</center></b></h4>
+        </div>
+        <div class="row">
+        <div class="col-md-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Branch</h4>
+              <div class="form-group">
+                
+                        <label for="exampleInputName1">Name of Company</label>
+                        <input type="text" class="form-control" id="cname" placeholder="Name">
+                     
+              </div>
+              
+              </div>
+            </div>
+          </div>
+        
+        
+        
+         
+
+        
+        <div class="col-md-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+        <div class="form-group">
+            <label>File upload</label>
+            <input type="file" name="img[]" class="file-upload-default">
+            <div class="input-group col-xs-12">
+              <input type="text" class="form-control file-upload-info" disabled placeholder="Upload CSV File">
+              <span class="input-group-append">
+                <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                
+              </span>
+            </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          
+        </div>
+        
+{% endblock content %}

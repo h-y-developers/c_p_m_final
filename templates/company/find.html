@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container-scroller">
+      <!-- partial:partials/_sidebar.html -->
+      {% include 'navbar_company.html' %}
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_navbar.html -->
+       
+        <!-- main content -->
+        <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="content mb-4">
+            <h4><b><center>BVM College of Engineering</center></b></h4>
+        </div>
+        <div class="row">
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title text-muted mb-4">Branch</h4>
+                  <div class="form-group">
+                    <label class="mb-3">Select Branch</label>
+                    <select class="typeahead text-muted  mt-2 mb-1" style="width:100%">
+                      <option value="AL">Mechanical</option>
+                      <option value="WY">Civil</option>
+                      <option value="AM">Electronics</option>
+                      <option value="CA">Electrical</option>
+                      <option value="RU">Computer</option>
+                      <option value="RU">Information Technology</option>
+                      <option value="RU">EC</option>
+                      <option value="RU">Production</option>
+                    </select>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title text-muted mb-4">Year</h4>
+                  <div class="form-group">
+                    <label class="mb-3">Select Year</label>
+                    <select class=" text-muted typeahead mt-2 mb-1" style="width:100%">
+                      <option value="AL">1</option>
+                      <option value="WY">2</option>
+                      <option value="AM">3</option>
+                      <option value="CA">4</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              </div>
+              
+            
+        </div>   
+
+    <div class="row"> 
+        <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title text-muted mb-4">Skills</h4>
+                  <div class="form-group">
+                    <label class="mb-3">Select Skills</label>
+                    <select class=" text-muted typeahead mt-2 mb-1" style="width:100%">
+                      <option value="AL">Mechanical</option>
+                      <option value="WY">Civil</option>
+                      <option value="AM">Electronics</option>
+                      <option value="CA">Electrical</option>
+                      <option value="RU">Computer</option>
+                      <option value="RU">Information Technology</option>
+                      <option value="RU">EC</option>
+                      <option value="RU">Production</option>
+                    </select>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+        <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title text-muted mb-4">Area of Interest</h4>
+                  <div class="form-group">
+                    <label class="mb-3">Select Interest</label>
+                    <select class=" text-muted typeahead mt-2 mb-1" style="width:100%">
+                      <option value="AL">Mechanical</option>
+                      <option value="WY">Civil</option>
+                      <option value="AM">Electronics</option>
+                      <option value="CA">Electrical</option>
+                      <option value="RU">Computer</option>
+                      <option value="RU">Information Technology</option>
+                      <option value="RU">EC</option>
+                      <option value="RU">Production</option>
+                    </select>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+
+        
+        </div>
+    
+        <div class="row"> 
+          <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Studnet Details</h4>
+                <!-- <p class="card-description"> Add class <code>.table-striped</code>
+                </p> -->
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th> Photo </th>
+                        <th> ID No. </th>
+                        
+                        <th> Name </th>
+                        <th> Branch </th>
+                        <th> Year </th>
+                        <th> Projects </th>
+                        <th> Ratings </th>
+                        <th> Full Profile </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="py-1">
+                          <img src=" {% static '../../assets/images/faces-clipart/pic-1.png' %} " alt="image" />
+                        </td>
+                        <td> 18IT403 </td>
+                        <td>
+                          yash maheta
+                        </td>
+                        <td> IT </td>
+                        <td> 3rd </td>
+                        <td><button type="button" class="btn btn-inverse-primary  btn-icon-text">
+                            <i class="mdi mdi-book btn-icon-prepend"></i> Projects </button></td>
+                        <td>
+                            <!-- <label for="exampleInputName1"></label> -->
+                            <input type="number" min="1" max="5" class="form-control " id="ratings" placeholder="Ratings">
+                          </td>
+                          <td><button type="button" class="btn btn-inverse-success  btn-icon-text">
+                            <i class="mdi mdi-account btn-icon-prepend"></i> Profile </button></td>
+                      </tr>
+                      
+                      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+  
+        </div>
+        </div>
+      
+{% endblock content %}

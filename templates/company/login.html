@@ -1,0 +1,65 @@
+{% extends 'login/base.html' %}
+{% block title %}
+  <title>Company Login</title>
+{% endblock title %}
+{% load static %}
+{% block content %}
+
+
+                           
+
+
+                              <div class="col-md-7 detail-box pb-4">
+                               
+                                <div class="detailsh col-lg-7 col-md-10 col-sm-7 col-11 mx-auto">
+                                      <img class="logo mb-4" src="{% static 'assets/images/bvm_logo.png' %}" alt="">
+                                      <div class="row form-ro no-margin user_tabs">
+                                        <nav class="login_tabs" id="login_tabs">
+                                          
+                                            <ul class="login_users" id="login_users">
+                                                <li class=" users"><a href="/students/login" style="text-decoration: none;">Student</a></li>
+                                                <li class=" users"><a href="/faculty/login" style="text-decoration: none;">Faculty</a></li>
+                                                <li class=" users user_active"><a href="/company/login" style="text-decoration: none;color: #066aff;">Company</a></li>
+                                                <!-- <li class="users" id="Faculty"><input type="hidden" name="login_users[]" value="Faculty">Faculty</li>
+                                                <li class="users" id="Company"><input type="hidden" name="login_users[]" value="Company">Company</li> -->
+                                            </ul>
+                                          <!-- </form> -->
+                                        </nav>
+                                      </div>
+                          {% for message in messages %}
+                <div class="form-group mt-4 mb-4 {{ message.tags }} text-left alert-dismissible fade show" style="font-size: 12px;" role="alert">
+                  {{ message }}
+                  
+                </div>
+                {% endfor %}
+                                      <div class="form_contain mt-4">
+                                        <form class="  company_form form_active" method="POST" style="display: block;">
+                                          {% csrf_token %}
+                                            <div class="row form-ro no-margin">
+                                              <input type="text" name="cusername" placeholder="Company Username" class="form-control form-control-sm">
+                                          </div>
+                                          
+                                           <div class="row form-ro no-margin">
+                                              <input type="password" name="cpassword" placeholder="Password" class="form-control form-control-sm">
+                                          </div>
+                                          <hr>
+                                        <div class="row form-ro fgbh mt-4">
+                                            <div class="col-6">
+                                                <a href="/forgetPassword">Forget Password</a>
+                                            </div>
+                                            <div class="col-6">
+                                                <button class="btn btn-sm btn-primary">Sign In</button>
+                                            </div>
+                                          </div>
+                                          <!-- <div class="row form-ro hlio fgbh">
+                                            <div class="col-md-12">
+                                                <p>Dont have Accounta <a href="">Sign Up now</a> </p>
+                                            </div>
+                                            
+                                        </div>   -->
+                                    </form>
+                                        
+                                      </div>
+                                    </div>
+                                  
+{% endblock content %}

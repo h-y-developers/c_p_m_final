@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}
+  <title>Add Project</title>
+{% endblock title %}
+{% load static %}
+{% block content %}
+ 
+  <div class="container-scroller">
+   {% include 'navbar.html' %}
+   <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_navbar.html -->
+       
+
+    
+<div class="main-panel">
+<div class="content-wrapper">
+<form method="POST" action="/students/add_project" enctype="multipart/form-data">
+{% csrf_token %}
+<div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Projects</h4>
+                    <p class="card-description">Show Case Your Talent </p>
+                  
+                      <div class="form-group">
+                        <label>Project Name</label>
+                        <input type="text" class="form-control" name="name" placeholder="Ex. ERP System, Prediction-model" required>
+                      </div>
+                      <div class="form-group">
+                        <label>Description</label>
+                        <textarea class="form-control" name="desc" rows="4" placeholder="Describe your project" required></textarea>
+                      </div>
+                      <div class="form-group">
+                        <label>URL</label>
+                        <input type="url" class="form-control" name="url" placeholder="http://hy-news.in" >
+                      </div>
+                      {% comment %} <div class="col-md-12">
+                      <div class="form-group row">
+                        <label class="col-form-label">Upload ScreenShot</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        <input type="file" name="certi" class="file-upload">
+                          <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                        <div class="input-group col-xs-12">
+                          <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                          </span>
+                        </div>
+                      </div>
+                      </div> {% endcomment %}
+                      
+                      <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                      <button class="btn btn-dark">Cancel</button>
+                    
+                  </div>
+                </div>
+              </div>
+</form>
+</div>
+</div>
+</div>
+</div>
+
+
+{% comment %} {% include 'scripts.html' %}  {% endcomment %}
+<!-- End custom js for this page -->
+{% endblock content %}

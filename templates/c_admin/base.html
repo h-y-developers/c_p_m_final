@@ -1,0 +1,96 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    {% block title %}
+
+{% endblock title %}
+
+    <link rel="stylesheet" href="{% static 'assets/vendors/mdi/css/materialdesignicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendors/css/vendor.bundle.base.css' %}">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="{% static 'assets/vendors/jvectormap/jquery-jvectormap.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendors/flag-icon-css/css/flag-icon.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendors/owl-carousel-2/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendors/owl-carousel-2/owl.theme.default.min.css' %}">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.png' %}" />
+    <style type="text/css">
+      .main-panel{
+        position: relative;
+        top:0;
+        left: 0;
+      }
+      .progress { 
+        height: 4px; 
+    } 
+      
+    .progress-bar { 
+        background-color: green; 
+    } 
+    /* #password_vali {
+  display:none;
+ 
+  background-color: aliceblue;
+  border-radius: 10px;
+  z-index: -1;
+}
+#password_vali:after {
+	content: '';
+	display: block;  
+	position: relative;
+	top:0px;
+  left: 50%;
+	
+	width: 0;
+	height: 0;
+  
+	border-bottom: 10px solid green;
+	border-top: 10px solid transparent;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+} */
+/* #password_vali p {
+  padding: 10px 35px;
+  font-size: 18px;
+} */
+    .valid {
+  color: green;
+}
+
+.valid:before {
+  position: relative;
+  left: -10px;
+  content: "✔";
+}
+
+/* Add a red text color and an "x" when the requirements are wrong */
+.invalid {
+  color: red;
+}
+
+.invalid:before {
+  position: relative;
+  left: -10px;
+  content: "✖";
+}
+    </style>
+  </head>
+
+  <body>
+ 
+    
+          {% block content %}
+         {% endblock content %}
+        
+      {% include "scripts.html" %}
+  </body>
+</html>

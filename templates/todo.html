@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>To-do List</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="assets/vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="assets/images/favicon.png" />
+  </head>
+  <script>
+    var myNodelist = document.getElementsByTagName("LI");
+    var myNodep = document.getElementsByTagName("P")
+    var i;
+    for (i = 0; i < myNodelist.length; i++) {
+      var span = document.createElement("SPAN");
+      var txt = document.createTextNode("\u00D7");
+      span.className = "close";
+      span.appendChild(txt);
+      myNodelist[i].appendChild(span);
+    }
+    for (i = 0; i < myNodep.length; i++) {
+      var span = document.createElement("SPAN");
+      var txt = document.createTextNode("\u00D7");
+      span.className = "close";
+      span.appendChild(txt);
+      myNodep[i].appendChild(span);
+    }
+    // Click on a close button to hide the current list item
+    var close = document.getElementsByClassName("close");
+    var i;
+    for (i = 0; i < close.length; i++) {
+      close[i].onclick = function() {
+        var div = this.parentElement;
+        div.style.display = "none";
+      }
+    }
+    
+    // Add a "checked" symbol when clicking on a list item
+    var list = document.querySelector('ul');
+    list.addEventListener('click', function(ev) {
+      if (ev.target.tagName === 'LI' && ev.target.tagName === 'P') {
+        ev.target.classList.toggle('checked');
+      }
+    }, false);
+    
+    // Create a new list item when clicking on the "Add" button
+    function newElement() {
+      var li = document.createElement("li");
+      var inputValue = document.getElementById("topic").value;
+      var t = document.createTextNode(inputValue);
+      li.appendChild(t);
+      
+      var p = document.createElement("p");
+      var desc = document.getElementById("desc").value;
+      var d = document.createTextNode(desc);
+      p.appendChild(d);
+      if (inputValue === '') {
+        alert("You must write something!");
+      } else {
+        document.getElementById("myUL").appendChild(li);
+        document.getElementById("myUL").appendChild(p);
+
+      }
+      document.getElementById("myUL").value = "";
+      var span = document.createElement("SPAN");
+      var txt = document.createTextNode("\u00D7");
+      span.className = "close";
+      span.appendChild(txt);
+      li.appendChild(span);
+      
+      document.getElementById("desc").value = "";
+    
+     var span = document.createElement("SPAN");
+     var txt = document.createTextNode("\u00D7");
+     span.className = "close";
+     span.appendChild(txt);
+     li.appendChild(span);
+     p.appendChild(span);
+    
+    
+      for (i = 0; i < close.length; i++) {
+        close[i].onclick = function() {
+          var div = this.parentElement;
+          div.style.display = "none";
+        }
+      }
+    }
+    </script>
+    
+      
+  
+  <body>
+    <center>
+    <div class="col-md-6 grid-margin ">
+        
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Create Todo List</h4>
+            <p class="card-description">  </p>
+            <form class="forms-sample">
+              <div class="form-group row">
+                <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Topic</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="topic" placeholder="Topic">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Description</label>
+                <div class="col-sm-9">
+                    <textarea class="form-control" id="desc" rows="7" placeholder="Description"></textarea>
+                </div>
+              </div>
+              
+              <span  class="btn btn-primary mr-2"  onclick="newElement()">Add</span>
+              <button class="btn btn-dark">Cancel</button>
+            </form>
+          </div>
+
+        </div>
+        <div>
+          <ul id="myUL"><li  id="list" class="checked">
+            this is a something that has been written.....
+            <p class="description">Description goes here</p>
+          </li></ul>
+          </div>
+      </div>
+    </center>
+
+    <!-- partial:../../partials/_footer.html -->
+  <footer class="footer">
+    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+      <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
+      <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin templates</a> from Bootstrapdash.com</span>
+    </div>
+  </footer>
+  <!-- partial -->
+</div>
+<!-- main-panel ends -->
+</div>
+<!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
+<!-- plugins:js -->
+<script src="assets/vendors/js/vendor.bundle.base.js"></script>
+<!-- endinject -->
+<!-- Plugin js for this page -->
+<script src="assets/vendors/select2/select2.min.js"></script>
+<script src="assets/vendors/typeahead.js/typeahead.bundle.min.js"></script>
+<!-- End plugin js for this page -->
+<!-- inject:js -->
+<script src="assets/js/off-canvas.js"></script>
+<script src="assets/js/hoverable-collapse.js"></script>
+<script src="assets/js/misc.js"></script>
+<script src="assets/js/settings.js"></script>
+<script src="assets/js/todolist.js"></script>
+<!-- endinject -->
+<!-- Custom js for this page -->
+<script src=" assets/js/file-upload.js"></script>
+<script src=" assets/js/typeahead.js"></script>
+<script src=" assets/js/select2.js"></script>
+<!-- End custom js for this page -->
+</body>
+</html>
+
